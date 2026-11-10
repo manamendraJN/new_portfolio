@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { site } from "@/content/site";
 import { drawCover, frameUrl, hasFrames } from "@/lib/frames";
 import { getGsap, MOTION_OK } from "@/lib/gsap";
@@ -202,7 +202,8 @@ export function FrameSequence({ children }: { children: ReactNode }) {
         aria-hidden="true"
         // The picture is 0.91 x the screen width tall, so the fade runs from 44vw to 91vw: fully
         // opaque exactly where the video ends.
-        className="pointer-events-none absolute inset-x-0 top-[44vw] bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
+        style={{ "--ay": site.hero.mobile.anchorY ?? 0.5 } as CSSProperties}
+        className="pointer-events-none absolute inset-x-0 top-[calc(var(--ay)*(100svh-90.7vw)+44vw)] bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
       />
       {/* Fades in over the last frames, handing off to the next section. */}
       <div
