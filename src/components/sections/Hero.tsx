@@ -24,7 +24,7 @@ export function Hero() {
     >
       <FrameSequence>
         <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-16">
-          <div data-hero-text className="max-w-[min(100%,44rem)] md:ml-auto md:text-right">
+          <div data-hero-text className="max-w-[min(100%,44rem)] text-center md:ml-auto md:w-fit">
             <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
               {site.roles.join(" / ")}
             </Label>
@@ -32,7 +32,7 @@ export function Hero() {
             <Heading level={1} variant="hero" id="hero-title" className="sr-only">
               {site.name}
             </Heading>
-            <p className="mt-3 max-w-[40ch] text-sm leading-snug text-fg md:ml-auto md:text-base">
+            <p className="mx-auto mt-3 max-w-[40ch] text-sm leading-snug text-fg md:text-base">
               {site.intro}
             </p>
           </div>
