@@ -22,24 +22,12 @@ export interface SocialLink {
   href: string | Todo;
 }
 
-/** One set of hero frames, and how it is framed on its device. */
-export interface FrameSet {
-  path: string;
-  width: number;
-  height: number;
-  /** Fraction of the frame's width kept in view (1 = fill the screen, lower = zoomed out). Default 1. */
-  visibleX?: number;
-  /** Which part of the frame stays in view when cropped sideways: 0 = left edge, 1 = right edge. */
-  focusX?: number;
-  /** Vertical position of the picture when it does not fill the height: 0 = top, 1 = bottom. */
-  anchorY?: number;
-}
-
 export interface HeroFrameConfig {
   /** Frame count per set. 0 means no frames yet: show the static fallback. */
   count: number;
-  desktop: FrameSet;
-  mobile: FrameSet;
+  desktop: { path: string; width: number; height: number; focusX?: number };
+  /** focusX 0..1: which part of the frame stays in view when it is cropped (0 left, 1 right). */
+  mobile: { path: string; width: number; height: number; focusX?: number };
   /** Printf-style: path + filename pattern, 1-indexed, zero padded to `pad`. */
   pad: number;
   extension: "webp";
