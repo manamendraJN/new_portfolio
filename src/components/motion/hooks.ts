@@ -12,16 +12,14 @@ type Gsap = ReturnType<typeof getGsap>;
  */
 export function useMotion(
   scope: RefObject<Element | null>,
-  setup: (g: Gsap, scope: Element) => void,
+  setup: (g: Gsap, scope: Element) => void | (() => void),
 ) {
   useEffect(() => {
     const el = scope.current;
     if (!el) return;
     const g = getGsap();
     const mm = g.gsap.matchMedia(el);
-    mm.add(MOTION_OK, () => {
-      setup(g, el);
-    });
+    mm.add(MOTION_OK, () => setup(g, el));
     return () => mm.revert();
     // `setup` is intentionally captured once; callers pass stable setup logic.
     // eslint-disable-next-line react-hooks/exhaustive-deps

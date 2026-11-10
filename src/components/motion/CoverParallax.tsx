@@ -10,41 +10,53 @@ interface CoverParallaxProps {
 }
 
 /**
- * The section that holds this slides under the next one (see the overlap rule in
- * globals.css). As the next section rises, this content sinks slowly and dims, so the
- * cover reads as depth. Scroll-driven, reversible, and off with reduced motion.
+ * Curtain reveal. The section holding this stays put (sticky, with its bottom edge at the
+ * bottom of the screen) while the next section, at least a screen tall, slides up over it.
+ * A dark veil deepens over it as it is covered. Scroll-driven and reversible; with reduced
+ * motion nothing is applied and the two sections simply stack.
  */
 export function CoverParallax({ coveredBy, children }: CoverParallaxProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
   const shadeRef = useRef<HTMLDivElement>(null);
 
-  useMotion(contentRef, ({ gsap }, content) => {
+  useMotion(shadeRef, ({ gsap }, shade) => {
+    const section = shade.parentElement as HTMLElement | null;
     const cover = document.getElementById(coveredBy);
-    if (!cover) return;
-    const scrollTrigger = {
-      trigger: cover,
-      start: "top bottom",
-      end: "top top",
-      scrub: true,
+    if (!section || !cover) return;
+
+    // Stick with the section's bottom edge at the bottom of the screen. Its content may be
+    // taller than the screen, so the sticky offset is negative: the tail stays in view.
+    const stick = () => {
+      section.style.top = `${window.innerHeight - section.offsetHeight}px`;
     };
-    gsap.fromTo(
-      content,
-      { y: 0 },
+    section.style.position = "sticky";
+    stick();
+    const ro = new ResizeObserver(stick);
+    ro.observe(section);
+    window.addEventListener("resize", stick);
+
+    const tween = gsap.fromTo(
+      shade,
+      { opacity: 0 },
       {
-        y: () => window.innerHeight * 0.16,
+        opacity: 0.6,
         ease: "none",
-        scrollTrigger: { ...scrollTrigger, invalidateOnRefresh: true },
+        scrollTrigger: { trigger: cover, start: "top bottom", end: "top top", scrub: true },
       },
     );
-    if (shadeRef.current) {
-      gsap.fromTo(shadeRef.current, { opacity: 0 }, { opacity: 0.45, ease: "none", scrollTrigger });
-    }
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      ro.disconnect();
+      window.removeEventListener("resize", stick);
+      section.style.position = "";
+      section.style.top = "";
+    };
   });
 
   return (
     <>
-      <div ref={contentRef}>{children}</div>
-      {/* Dark veil, drawn with the dark theme's colour, fades in as the cover rises. */}
+      {children}
+      {/* Dark veil, in the dark theme's colour, fading in as the cover rises. */}
       <div
         ref={shadeRef}
         aria-hidden="true"
