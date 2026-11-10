@@ -40,7 +40,7 @@ export function Hero() {
           <a
             data-hero-cue
             href="#about"
-            className="absolute bottom-8 left-[var(--gutter)] inline-flex min-h-11 items-center gap-3 text-fg transition-colors hover:text-link"
+            className="absolute bottom-8 left-1/2 inline-flex min-h-11 -translate-x-1/2 items-center gap-3 text-fg transition-colors hover:text-link"
           >
             <ArrowDown aria-hidden="true" size={16} />
             <Label inherit>{scrollLabel}</Label>
