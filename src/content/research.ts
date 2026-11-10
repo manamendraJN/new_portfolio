@@ -28,28 +28,4 @@ export const research: Publication = {
     "Personalized Accessories Recommendation",
     "Integrated Grooming Recommendation",
   ],
-  // Original illustrations, to be drawn in Phase 5. Always labelled as illustrations.
-  illustrations: [
-    {
-      src: "",
-      kind: "illustration",
-      alt: "Illustration of front and side body measurements",
-      caption: "Front and side body measurements",
-      drawing: "measurements",
-    },
-    {
-      src: "",
-      kind: "illustration",
-      alt: "Illustration of feature extraction from the two views",
-      caption: "Feature extraction",
-      drawing: "extraction",
-    },
-    {
-      src: "",
-      kind: "illustration",
-      alt: "Illustration of garment-size recommendation",
-      caption: "Garment-size recommendation",
-      drawing: "recommendation",
-    },
-  ],
 };

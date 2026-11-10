@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { research } from "@/content/research";
 import { site } from "@/content/site";
-import { ResearchIllustration } from "./ResearchIllustrations";
 
 /**
  * Research: one publication plate styled like a journal citation. My individual
@@ -109,23 +108,6 @@ export function Research() {
             </section>
           </div>
         </Reveal>
-
-        {/* Original illustrations of my contribution */}
-        <div className="mt-16 space-y-8 md:mt-24">
-          <div className="space-y-2">
-            <Heading level={3} variant="title">
-              My contribution, illustrated
-            </Heading>
-            <p className="max-w-[var(--measure)] text-muted">
-              Original schematic illustrations of the module. They show the idea, not results.
-            </p>
-          </div>
-          <Reveal stagger className="grid gap-x-8 gap-y-12 md:grid-cols-3">
-            {r.illustrations.map((item) => (
-              <ResearchIllustration key={item.caption} item={item} />
-            ))}
-          </Reveal>
-        </div>
       </Container>
     </Section>
   );

@@ -87,8 +87,6 @@ export interface Media {
   alt: string;
   kind: "screenshot" | "illustration";
   caption?: string;
-  /** For original illustrations drawn in code, which drawing to render. */
-  drawing?: "measurements" | "extraction" | "recommendation";
 }
 
 export interface Project {
@@ -155,8 +153,6 @@ export interface Publication {
   contribution: { title: string; summary: string };
   /** Wider group project; not my individual work. */
   groupWork: string[];
-  /** Original illustrations; always labelled as illustrations. */
-  illustrations: Media[];
 }
 
 export interface EducationEntry {
