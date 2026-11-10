@@ -24,7 +24,7 @@
 }
 
 html {
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -61,5 +61,11 @@ a {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
