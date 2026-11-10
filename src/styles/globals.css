@@ -91,3 +91,18 @@ a {
     z-index: 2;
   }
 }
+
+/*
+ * Contact slides up over the bottom of Education. Education gets matching spare padding, so
+ * the overlap only ever covers empty space, never content; the sinking and dimming of
+ * Education's content while this happens is scroll-driven (CoverParallax). Motion only.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  #education {
+    padding-bottom: calc(var(--section-y) + 40svh);
+  }
+  #contact {
+    margin-top: -40svh;
+    z-index: 2;
+  }
+}

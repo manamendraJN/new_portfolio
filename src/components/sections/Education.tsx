@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/motion";
+import { CoverParallax, Reveal } from "@/components/motion";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { certificates, education } from "@/content/education";
 import { site } from "@/content/site";
@@ -18,53 +18,55 @@ export function Education() {
       tone={meta.tone}
       aria-labelledby="education-title"
     >
-      <Container>
-        <Reveal as="header" className="mb-14 md:mb-20">
-          <Label accent>{meta.number}</Label>
-          <Heading level={2} id="education-title" className="mt-4">
-            {meta.label}
-          </Heading>
-        </Reveal>
+      <CoverParallax coveredBy="contact">
+        <Container>
+          <Reveal as="header" className="mb-14 md:mb-20">
+            <Label accent>{meta.number}</Label>
+            <Heading level={2} id="education-title" className="mt-4">
+              {meta.label}
+            </Heading>
+          </Reveal>
 
-        <Rule accent />
+          <Rule accent />
 
-        {/* Row 1: degree */}
-        <Reveal className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12">
-          <h3 className="col-span-12 md:col-span-3">
-            <Label>Degree</Label>
-          </h3>
-          <ul className="col-span-12 space-y-8 md:col-span-8 md:col-start-5">
-            {education.map((e) => (
-              <li key={e.id} className="space-y-2">
-                <p className="text-[length:var(--text-title)] leading-snug font-medium">
-                  {text(e.qualification)}
-                </p>
-                <p>{text(e.institution)}</p>
-                <p className="flex flex-wrap gap-x-5 gap-y-1">
-                  <Label accent>{e.status === "in-progress" ? "In progress" : "Completed"}</Label>
-                  {e.stage && <Label>{e.stage}</Label>}
-                  {e.expectedGraduation && !isTodo(e.expectedGraduation) && (
-                    <Label>Expected {e.expectedGraduation}</Label>
-                  )}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+          {/* Row 1: degree */}
+          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12">
+            <h3 className="col-span-12 md:col-span-3">
+              <Label>Degree</Label>
+            </h3>
+            <ul className="col-span-12 space-y-8 md:col-span-8 md:col-start-5">
+              {education.map((e) => (
+                <li key={e.id} className="space-y-2">
+                  <p className="text-[length:var(--text-title)] leading-snug font-medium">
+                    {text(e.qualification)}
+                  </p>
+                  <p>{text(e.institution)}</p>
+                  <p className="flex flex-wrap gap-x-5 gap-y-1">
+                    <Label accent>{e.status === "in-progress" ? "In progress" : "Completed"}</Label>
+                    {e.stage && <Label>{e.stage}</Label>}
+                    {e.expectedGraduation && !isTodo(e.expectedGraduation) && (
+                      <Label>Expected {e.expectedGraduation}</Label>
+                    )}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
 
-        <Rule />
+          <Rule />
 
-        {/* Row 2: certificates */}
-        <Reveal className="grid grid-cols-12 gap-x-6 gap-y-8 py-8 md:py-12">
-          <h3 className="col-span-12 md:col-span-3">
-            <Label>Certificates</Label>
-          </h3>
-          <div className="col-span-12 md:col-span-8 md:col-start-5">
-            <CertificateGallery items={certificates} />
-          </div>
-        </Reveal>
-        <Rule />
-      </Container>
+          {/* Row 2: certificates */}
+          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-8 py-8 md:py-12">
+            <h3 className="col-span-12 md:col-span-3">
+              <Label>Certificates</Label>
+            </h3>
+            <div className="col-span-12 md:col-span-8 md:col-start-5">
+              <CertificateGallery items={certificates} />
+            </div>
+          </Reveal>
+          <Rule />
+        </Container>
+      </CoverParallax>
     </Section>
   );
 }
