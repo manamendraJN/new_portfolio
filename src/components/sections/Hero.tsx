@@ -23,16 +23,19 @@ export function Hero() {
       style={{ "--hero-pin-vh": site.hero.pinViewportHeights } as CSSProperties}
     >
       <FrameSequence>
-        <Container className="relative flex h-full flex-col justify-end pt-28 pb-20 md:pb-36">
+        <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-36">
           <div data-hero-text className="max-w-[min(100%,44rem)] text-center md:ml-auto md:w-fit">
-            <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
+            <Label
+              accent
+              className="text-[0.625rem]! tracking-[0.08em]! text-balance min-[420px]:whitespace-nowrap md:text-[0.6875rem]! md:tracking-[0.14em]!"
+            >
               {site.roles.join(" / ")}
             </Label>
             {/* The name is in the nav; keep the page h1 for assistive tech and search. */}
             <Heading level={1} variant="hero" id="hero-title" className="sr-only">
               {site.name}
             </Heading>
-            <p className="mx-auto mt-3 max-w-[40ch] text-sm leading-snug text-fg md:text-base">
+            <p className="mx-auto mt-4 max-w-[36ch] text-sm leading-snug text-fg md:text-base">
               {site.intro}
             </p>
           </div>
@@ -40,7 +43,7 @@ export function Hero() {
           <a
             data-hero-cue
             href="#about"
-            className="absolute bottom-8 left-1/2 inline-flex min-h-11 -translate-x-1/2 items-center gap-3 text-fg transition-colors hover:text-link"
+            className="absolute bottom-4 left-1/2 inline-flex min-h-11 -translate-x-1/2 items-center gap-3 text-fg transition-colors hover:text-link md:bottom-8"
           >
             <ArrowDown aria-hidden="true" size={16} />
             <Label inherit>{scrollLabel}</Label>
