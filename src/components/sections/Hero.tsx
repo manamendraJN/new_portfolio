@@ -23,7 +23,7 @@ export function Hero() {
       style={{ "--hero-pin-vh": site.hero.pinViewportHeights } as CSSProperties}
     >
       <FrameSequence>
-        <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-16">
+        <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-24">
           <div data-hero-text className="max-w-[min(100%,44rem)] text-center md:ml-auto md:w-fit">
             <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
               {site.roles.join(" / ")}
