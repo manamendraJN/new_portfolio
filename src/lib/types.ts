@@ -36,78 +36,115 @@ export interface HeroFrameConfig {
 
 export interface SiteConfig {
   name: string;
+  /** Full professional title, as displayed. */
   title: string;
   roles: string[];
+  /** <title> for the site. */
+  siteTitle: string;
+  /** Meta description. */
   description: string;
-  intro: string | Todo;
+  intro: string;
   url: string | Todo;
   email: string | Todo;
-  location: string | Todo;
+  /** Where the contact form delivers. */
+  contactTo: string | Todo;
+  cvUrl: string | Todo;
+  portrait: string | Todo;
   social: SocialLink[];
   nav: NavItem[];
   sections: SectionMeta[];
   hero: HeroFrameConfig;
 }
 
-export type Provenance = "built" | "maintained" | "supported";
+/** An image that is either a real screenshot or a clearly labelled illustration. */
+export interface Media {
+  /** Empty until a genuine image is supplied. */
+  src: string;
+  alt: string;
+  kind: "screenshot" | "illustration";
+  caption?: string;
+}
 
 export interface Project {
   slug: string;
   title: string;
-  year: string | Todo;
-  summary: string | Todo;
-  role: string | Todo;
-  provenance: Provenance;
+  category: string;
+  published: boolean;
+  repo: string;
+  liveUrl?: string;
+  stack: string[];
+  description: string;
+  features?: string[];
+  /** My individual contribution, where stated. */
+  contribution?: string;
+  /** Reported by the project description, not independently verified. */
+  reportedOutcome?: string;
   /** Confidential work: anonymised copy, no internal screenshots. */
   confidential: boolean;
-  stack: string[];
-  problem: string | Todo;
-  approach: string | Todo;
-  outcome: string | Todo;
-  links: { label: string; href: string }[];
-  images: { src: string; alt: string }[];
+  media: Media[];
+  /** Placeholder note listing what is still needed. */
+  todo?: string;
 }
 
 export interface ExperienceEntry {
   id: string;
+  published: boolean;
   role: string | Todo;
   org: string | Todo;
   start: string | Todo;
   end: string | Todo;
-  provenance: Provenance;
+  employment?: string;
+  location?: string;
+  /** "broadcast-operations" roles must never be presented as software engineering. */
+  domain: "software-engineering" | "broadcast-operations";
   summary: string | Todo;
-  points: Array<string | Todo>;
+  points?: Array<string | Todo>;
 }
 
 export interface SkillGroup {
   id: string;
   label: string;
-  items: Array<{ name: string; note?: string }>;
+  items: string[];
 }
 
 export interface Publication {
-  title: string | Todo;
-  authors: string[] | Todo;
-  venue: string | Todo;
-  year: string | Todo;
-  doi: string | Todo;
-  /** Describes my actual role in the work. */
-  myRole: string | Todo;
-  abstract?: string | Todo;
+  published: boolean;
+  title: string;
+  venue: string;
+  conferenceDate: string;
+  venueLocation: string;
+  doi: string;
+  url: string;
+  isbn: string;
+  ieeeXplore: string;
+  projectId: string;
+  supervisor: string;
+  /** My individual contribution. */
+  contribution: { title: string; summary: string };
+  /** Wider group project; not my individual work. */
+  groupWork: string[];
+  /** Original illustrations; always labelled as illustrations. */
+  illustrations: Media[];
 }
 
 export interface EducationEntry {
   id: string;
-  qualification: string | Todo;
-  institution: string | Todo;
-  start: string | Todo;
-  end: string | Todo;
+  qualification: string;
+  institution: string;
   status: "completed" | "in-progress";
-  note?: string;
+  /** Shown as written, e.g. "Fourth-year undergraduate". */
+  stage?: string;
+  expectedGraduation?: string | Todo;
 }
 
-export interface Certification {
-  name: string | Todo;
-  issuer: string | Todo;
-  year: string | Todo;
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  /** Credential details when there is no link. */
+  credential?: string;
+  verifyUrl?: string;
+  issued?: string;
+  /** Configurable ImageKit URL; stays empty until a genuine image is supplied. */
+  imageUrl: string;
 }

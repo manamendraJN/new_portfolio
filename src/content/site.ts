@@ -1,18 +1,26 @@
 import type { SiteConfig } from "@/lib/types";
 
+/** Source of truth: portfolio-details.md. Values marked todo are not yet supplied. */
 export const site: SiteConfig = {
   name: "Navodya Manamendra",
-  title: "Full-Stack Developer, Software Engineer, AI Enthusiast",
+  title: "Full-Stack Developer | Software Engineer | AI Enthusiast",
   roles: ["Full-Stack Developer", "Software Engineer", "AI Enthusiast"],
+  siteTitle: "Navodya Manamendra | Full-Stack Developer",
+  // Site description is TODO in the details file; the hero introduction is used until supplied.
   description:
-    "Portfolio of Navodya Manamendra: full-stack developer, software engineer and AI enthusiast.",
-  intro: { todo: "one-line intro for the hero (from specification)" },
-  url: { todo: "production domain" },
-  email: { todo: "public contact email" },
-  location: { todo: "location, if to be shown" },
+    "Engineering digital experiences through software, technology, and intelligent solutions.",
+  intro: "Engineering digital experiences through software, technology, and intelligent solutions.",
+  url: { todo: "domain name" },
+  email: { todo: "email address" },
+  contactTo: { todo: "address the contact form delivers to" },
+  cvUrl: { todo: "résumé (CV) URL" },
+  portrait: { todo: "portrait photo file name, or none" },
   social: [
     { label: "GitHub", href: "https://github.com/manamendraJN" },
-    { label: "LinkedIn", href: { todo: "LinkedIn URL" } },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/navodya-manamendra-35a309248/",
+    },
   ],
   nav: [
     { label: "About", href: "#about" },
@@ -47,3 +55,10 @@ export const site: SiteConfig = {
     pinViewportHeights: 2.5,
   },
 };
+
+/** About copy, as written in the details file. One string per paragraph. */
+export const about: string[] = [
+  "I'm a Software Engineer and Full-Stack Developer pursuing a BSc (Hons) in Information Technology at SLIIT. I enjoy turning complex problems into practical, well-designed software that improves real-world workflows.",
+  "My experience spans web application development, business-oriented systems, computer vision, and AI research. I'm particularly interested in reliable software architecture, thoughtful user experiences, and intelligent applications that solve meaningful problems.",
+  "I'm working toward becoming a well-rounded Software Engineer and AI Developer who can design, build, and deploy scalable, reliable, and intelligent software.",
+];

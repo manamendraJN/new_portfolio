@@ -13,7 +13,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} | ${site.title}`,
+  title: site.siteTitle,
   description: site.description,
 };
 
