@@ -142,8 +142,10 @@ export function Nav() {
         ref={headerRef}
         data-theme={theme}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 h-16 text-fg transition-colors duration-200",
-          overHero ? "border-b border-transparent bg-transparent" : "border-b border-line bg-bg",
+          "fixed inset-x-0 top-0 z-50 h-16 border-b text-fg backdrop-blur-lg transition-colors duration-200",
+          // Transparent and blurred. Past the hero a light tint of the section colour keeps the
+          // links readable over whatever scrolls underneath.
+          overHero ? "border-transparent bg-transparent" : "border-line/50 bg-bg/40",
         )}
       >
         <div className="mx-auto flex h-full w-full max-w-[calc(var(--content-max)+2*var(--gutter))] items-center justify-between px-[var(--gutter)]">
