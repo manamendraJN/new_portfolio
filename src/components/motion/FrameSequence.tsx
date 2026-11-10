@@ -138,7 +138,9 @@ export function FrameSequence({ children }: { children: ReactNode }) {
         );
         if (cue) tl.to(cue, { autoAlpha: 0, duration: 0.08 }, 0.02);
         if (text) tl.to(text, { autoAlpha: 0, y: -48, duration: 0.15 }, 0.25);
-        if (dim) tl.to(dim, { opacity: 1, duration: 0.2 }, 0.8);
+        // Darken gently over the last frames, but never to solid colour: the video stays visible
+        // as the stage scrolls away and the next section comes in.
+        if (dim) tl.to(dim, { opacity: 0.4, duration: 0.3 }, 0.7);
 
         const onRefresh = () => render(target);
         ScrollTrigger.addEventListener("refresh", onRefresh);
