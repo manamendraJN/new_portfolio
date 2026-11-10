@@ -49,8 +49,16 @@ export const site: SiteConfig = {
   hero: {
     count: 120,
     desktop: { path: "/media/hero/desktop/", width: 1920, height: 1080 },
-    // focusX: which part of the frame stays in view on a portrait phone (0 left, 1 right). 0.5 = centred.
-    mobile: { path: "/media/hero/mobile/", width: 960, height: 540, focusX: 0.5 },
+    // Phones: the video is zoomed out (~62% of the frame's width) and sits in the upper part of
+    // the hero; a dark panel with a faded top edge holds the text beneath it.
+    mobile: {
+      path: "/media/hero/mobile/",
+      width: 960,
+      height: 540,
+      visibleX: 0.62,
+      focusX: 0.37,
+      anchorY: 0.15,
+    },
     pad: 4,
     extension: "webp",
     pinViewportHeights: 2.5,
