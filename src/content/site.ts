@@ -44,10 +44,10 @@ export const site: SiteConfig = {
   /**
    * Hero frame sequence. To swap the video: replace the frames in
    * public/media/hero/{desktop,mobile}/ and update `count` (and sizes).
-   * count: 0 keeps the static fallback composition.
+   * count: 0 shows the static fallback composition.
    */
   hero: {
-    count: 0,
+    count: 120,
     desktop: { path: "/media/hero/desktop/", width: 1920, height: 1080 },
     mobile: { path: "/media/hero/mobile/", width: 960, height: 540 },
     pad: 4,

@@ -37,10 +37,10 @@ export function Hero() {
 
         <a
           href="#about"
-          className="absolute bottom-8 left-[var(--gutter)] inline-flex min-h-11 items-center gap-3 transition-colors hover:text-link"
+          className="absolute bottom-8 left-[var(--gutter)] inline-flex min-h-11 items-center gap-3 text-fg transition-colors hover:text-link"
         >
           <ArrowDown aria-hidden="true" size={16} />
-          <Label>{scrollLabel}</Label>
+          <Label inherit>{scrollLabel}</Label>
           <span className="sr-only">to the About section</span>
         </a>
       </Container>
