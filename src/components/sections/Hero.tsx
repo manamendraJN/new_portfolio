@@ -24,7 +24,7 @@ export function Hero() {
     >
       <FrameSequence>
         <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-32">
-          <div data-hero-text className="max-w-[min(100%,44rem)]">
+          <div data-hero-text className="max-w-[min(100%,44rem)] md:ml-auto md:text-right">
             <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
               {site.roles.join(" / ")}
             </Label>
@@ -36,10 +36,10 @@ export function Hero() {
             >
               {site.name}
             </Heading>
-            <p className="mt-4 max-w-[40ch] text-sm leading-snug text-fg md:text-base">
+            <p className="mt-4 max-w-[40ch] text-sm leading-snug text-fg md:ml-auto md:text-base">
               {site.intro}
             </p>
-            <div className="mt-7 flex flex-wrap gap-2.5">
+            <div className="mt-7 flex flex-wrap gap-2.5 md:justify-end">
               {ctas.map((cta) => (
                 <Button
                   key={cta.href}
