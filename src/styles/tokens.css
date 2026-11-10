@@ -1,0 +1,46 @@
+/*
+ * Design tokens. Themes switch with a data-theme attribute on any
+ * element (normally a <Section>), so every component works on both.
+ * Dark is the default on :root.
+ */
+:root,
+[data-theme="dark"] {
+  --bg: #1c1b19;
+  --surface: #262522;
+  --raised: #302e2a;
+  --fg: #f0ece3;
+  --muted: #a8a49b;
+  --line: #3a3833;
+  --accent: #c9b37e; /* gold: rules, numerals, large text */
+  --accent-text: #c9b37e; /* gold passes AA for small text on dark */
+  --link: #8fa3c8; /* focus rings and link hover only */
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f4f1ea;
+  --surface: #eae5da;
+  --raised: #ffffff;
+  --fg: #1a1917;
+  --muted: #625e57; /* darkened from #6B675F to pass AA on sand */
+  --line: #d9d3c6;
+  --accent: #8c6d3f; /* bronze: rules and large text only */
+  --accent-text: #765a30; /* darker bronze for small text, AA on ivory/sand */
+  --link: #3d5a8a;
+  color-scheme: light;
+}
+
+:root {
+  /* Fluid type scale */
+  --text-hero: clamp(3rem, 1.6rem + 6vw, 6rem); /* up to 96px */
+  --text-section: clamp(1.75rem, 1.2rem + 2.3vw, 2.75rem); /* 28-44px */
+  --text-title: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --text-body: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem); /* 16-17px */
+  --text-label: 0.75rem;
+
+  /* Layout */
+  --content-max: 1280px;
+  --gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  --section-y: clamp(4rem, 2.6rem + 5.5vw, 10rem); /* 64-160px */
+  --measure: 68ch;
+}
