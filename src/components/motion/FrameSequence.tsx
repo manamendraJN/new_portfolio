@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { site } from "@/content/site";
 import { drawCover, frameUrl, hasFrames } from "@/lib/frames";
 import { getGsap, MOTION_OK } from "@/lib/gsap";
@@ -185,6 +185,10 @@ export function FrameSequence({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  const m = site.hero.mobile;
+  const mobileAnchorY = m.anchorY ?? 0.5;
+  const pictureVw = ((m.height / m.width) * 100) / (m.visibleX ?? 1);
+
   return (
     <div ref={stageRef} className="relative h-svh overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0">
@@ -200,10 +204,13 @@ export function FrameSequence({ children }: { children: ReactNode }) {
           video instead of ending in a straight line. */}
       <div
         aria-hidden="true"
-        // The picture is 0.91 x the screen width tall, so the fade runs from 44vw to 91vw: fully
-        // opaque exactly where the video ends.
-        style={{ "--ay": site.hero.mobile.anchorY ?? 0.5 } as CSSProperties}
-        className="pointer-events-none absolute inset-x-0 top-[calc(var(--ay)*(100svh-90.7vw)+44vw)] bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
+        // The picture is `ph` vw tall (frame aspect / zoom), starting `anchorY` of the free height
+        // down. The panel fades in over its last 47vw, so it is fully opaque exactly where the
+        // video ends, whatever the zoom.
+        style={{
+          top: `calc(${mobileAnchorY} * (100svh - ${pictureVw}vw) + ${pictureVw - 47}vw)`,
+        }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
       />
       {/* Fades in over the last frames, handing off to the next section. */}
       <div
