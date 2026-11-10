@@ -55,10 +55,6 @@ export const site: SiteConfig = {
     pinViewportHeights: 2.5,
   },
   heroContent: {
-    ctas: [
-      { label: "View projects", href: "#projects", variant: "primary" },
-      { label: "Get in touch", href: "#contact", variant: "secondary" },
-    ],
     scrollLabel: "Scroll",
   },
   contactContent: {

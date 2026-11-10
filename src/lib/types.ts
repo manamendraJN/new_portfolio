@@ -35,7 +35,6 @@ export interface HeroFrameConfig {
 }
 
 export interface HeroContent {
-  ctas: Array<{ label: string; href: string; variant: "primary" | "secondary" }>;
   scrollLabel: string;
 }
 

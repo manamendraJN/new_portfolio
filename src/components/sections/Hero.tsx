@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import type { CSSProperties } from "react";
 import { FrameSequence } from "@/components/motion";
-import { Button, Container, Heading, Label, Section } from "@/components/ui";
+import { Container, Heading, Label, Section } from "@/components/ui";
 import { site } from "@/content/site";
 
 /**
@@ -11,7 +11,7 @@ import { site } from "@/content/site";
 export function Hero() {
   const meta = site.sections.find((s) => s.id === "hero");
   if (!meta) return null;
-  const { ctas, scrollLabel } = site.heroContent;
+  const { scrollLabel } = site.heroContent;
 
   return (
     <Section
@@ -39,18 +39,6 @@ export function Hero() {
             <p className="mt-4 max-w-[40ch] text-sm leading-snug text-fg md:ml-auto md:text-base">
               {site.intro}
             </p>
-            <div className="mt-7 flex flex-wrap gap-2.5 md:justify-end">
-              {ctas.map((cta) => (
-                <Button
-                  key={cta.href}
-                  href={cta.href}
-                  variant={cta.variant}
-                  className="min-h-10! px-5! text-sm!"
-                >
-                  {cta.label}
-                </Button>
-              ))}
-            </div>
           </div>
 
           <a
