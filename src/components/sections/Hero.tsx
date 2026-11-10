@@ -28,15 +28,11 @@ export function Hero() {
             <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
               {site.roles.join(" / ")}
             </Label>
-            <Heading
-              level={1}
-              variant="hero"
-              id="hero-title"
-              className="mt-4 text-[length:clamp(2rem,1.2rem+3.4vw,3.5rem)]!"
-            >
+            {/* The name is in the nav; keep the page h1 for assistive tech and search. */}
+            <Heading level={1} variant="hero" id="hero-title" className="sr-only">
               {site.name}
             </Heading>
-            <p className="mt-4 max-w-[40ch] text-sm leading-snug text-fg md:ml-auto md:text-base">
+            <p className="mt-3 max-w-[40ch] text-sm leading-snug text-fg md:ml-auto md:text-base">
               {site.intro}
             </p>
           </div>
