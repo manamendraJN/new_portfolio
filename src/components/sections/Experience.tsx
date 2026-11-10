@@ -14,8 +14,7 @@ export function Experience() {
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
       <Container>
         <Reveal as="header" className="mb-14 md:mb-20">
-          <Label accent>{meta.number}</Label>
-          <Heading level={2} id="experience-title" className="mt-4">
+          <Heading level={2} id="experience-title">
             {meta.label}
           </Heading>
         </Reveal>

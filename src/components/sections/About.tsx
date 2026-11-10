@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion";
-import { Button, Container, Heading, Label, Rule, Section } from "@/components/ui";
+import { Button, Container, Heading, Rule, Section } from "@/components/ui";
 import { about, site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
 
@@ -17,8 +17,7 @@ export function About() {
     <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="about-title">
       <Container grid className="gap-y-12">
         <Reveal className="col-span-12 lg:col-span-4">
-          <Label accent>{meta.number}</Label>
-          <Rule accent className="mt-4 mb-8 w-12!" />
+          <Rule accent className="mb-8 w-12!" />
           <Heading level={2} id="about-title">
             {meta.label}
           </Heading>

@@ -21,8 +21,7 @@ export function Education() {
       <CoverParallax coveredBy="contact">
         <Container>
           <Reveal as="header" className="mb-14 md:mb-20">
-            <Label accent>{meta.number}</Label>
-            <Heading level={2} id="education-title" className="mt-4">
+            <Heading level={2} id="education-title">
               {meta.label}
             </Heading>
           </Reveal>

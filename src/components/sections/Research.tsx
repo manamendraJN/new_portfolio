@@ -41,8 +41,7 @@ export function Research() {
     <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
       <Container>
         <Reveal as="header" className="mb-14 md:mb-20">
-          <Label accent>{meta.number}</Label>
-          <Heading level={2} id="research-title" className="mt-4">
+          <Heading level={2} id="research-title">
             {meta.label}
           </Heading>
         </Reveal>

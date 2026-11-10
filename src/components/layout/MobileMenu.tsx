@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { NavItem, SectionMeta } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui";
 
 interface MobileMenuProps {
   id: string;
@@ -41,7 +40,6 @@ export function MobileMenu({ id, items, sections, activeId, onNavigate }: Mobile
                     active && "text-accent-text",
                   )}
                 >
-                  {meta && <Label accent>{meta.number}</Label>}
                   <span>{item.label}</span>
                 </Link>
               </li>

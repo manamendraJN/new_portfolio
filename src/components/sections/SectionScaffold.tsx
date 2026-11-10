@@ -1,4 +1,4 @@
-import { Container, Heading, Label, Section } from "@/components/ui";
+import { Container, Heading, Section } from "@/components/ui";
 import { site } from "@/content/site";
 
 /**
@@ -19,8 +19,7 @@ export function SectionScaffold({ id }: { id: string }) {
       className="min-h-[70svh]"
     >
       <Container>
-        <Label accent>{meta.number}</Label>
-        <Heading level={2} id={titleId} className="mt-4">
+        <Heading level={2} id={titleId}>
           {meta.label}
         </Heading>
       </Container>
