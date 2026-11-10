@@ -3,11 +3,10 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { Heading, Label } from "@/components/ui";
+import { Label } from "@/components/ui";
 import { getGsap, MOTION_OK } from "@/lib/gsap";
 import type { Project } from "@/lib/types";
 import "@/styles/projects.css";
-import { ProjectLinks } from "./ProjectLinks";
 import { ProjectVisual } from "./ProjectVisual";
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
@@ -344,7 +343,7 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
           aria-label="Projects"
           className="grid grid-cols-12 items-center gap-y-8 lg:gap-x-10"
         >
-          <div className="col-span-12 lg:col-span-7">
+          <div className="col-span-12 mx-auto w-full max-w-[860px]">
             <div
               ref={stageRef}
               className="pj-stage"
@@ -399,7 +398,7 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-4 lg:justify-start">
+            <div className="mt-6 flex items-center justify-center gap-4">
               <button
                 type="button"
                 aria-label="Previous project"
@@ -422,36 +421,6 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
                 {pad(active + 1)} / {pad(n)}
               </Label>
             </div>
-          </div>
-
-          {/* Details: all stacked in one cell so the height is constant; they cross-fade. */}
-          <div className="col-span-12 grid min-w-0 grid-cols-[minmax(0,1fr)] lg:col-span-5">
-            {projects.map((p, i) => (
-              <article
-                key={p.slug}
-                aria-hidden={i !== active}
-                inert={i !== active}
-                data-active={i === active}
-                className="pj-detail col-start-1 row-start-1 space-y-5"
-              >
-                <Label accent>
-                  {pad(i + 1)} / {pad(n)}
-                </Label>
-                <Heading level={3} variant="project">
-                  {p.title}
-                </Heading>
-                <Label as="p">{p.category}</Label>
-                <p className="max-w-[var(--measure)] text-muted">{p.description}</p>
-                <ul aria-label="Technologies" className="flex flex-wrap gap-x-4 gap-y-1">
-                  {p.stack.map((t) => (
-                    <li key={t}>
-                      <Label>{t}</Label>
-                    </li>
-                  ))}
-                </ul>
-                <ProjectLinks project={p} caseStudy />
-              </article>
-            ))}
           </div>
         </div>
       </div>
