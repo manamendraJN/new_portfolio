@@ -19,7 +19,8 @@ interface NavState {
 
 /** Finds the section under a given viewport y. */
 function sectionAt(y: number) {
-  for (const s of site.sections) {
+  // Where sections overlap (About over the hero tail), the later one is on top.
+  for (const s of [...site.sections].reverse()) {
     const el = document.getElementById(s.id);
     if (!el) continue;
     const r = el.getBoundingClientRect();

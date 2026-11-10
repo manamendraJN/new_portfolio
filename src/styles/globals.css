@@ -79,3 +79,15 @@ a {
     min-height: calc(100svh * (1 + var(--hero-pin-vh, 2.5)));
   }
 }
+
+/*
+ * Hand-off: About starts rising over the last part of the pinned hero instead of waiting
+ * for the hero to scroll away, so the dark stage is on screen for far less time.
+ * Only while the hero is pinned (motion allowed, pin not switched off).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pin:not([data-pin="off"]) + section {
+    margin-top: -55svh;
+    z-index: 2;
+  }
+}
