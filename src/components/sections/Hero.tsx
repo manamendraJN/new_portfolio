@@ -24,17 +24,29 @@ export function Hero() {
     >
       <FrameSequence>
         <Container className="relative flex h-full flex-col justify-end pt-28 pb-28 md:pb-32">
-          <div data-hero-text className="max-w-[min(100%,56rem)]">
-            <Label accent>{site.roles.join(" / ")}</Label>
-            <Heading level={1} variant="hero" id="hero-title" className="mt-5">
+          <div data-hero-text className="max-w-[min(100%,44rem)]">
+            <Label accent className="text-[0.6875rem]! tracking-[0.14em]!">
+              {site.roles.join(" / ")}
+            </Label>
+            <Heading
+              level={1}
+              variant="hero"
+              id="hero-title"
+              className="mt-4 text-[length:clamp(2rem,1.2rem+3.4vw,3.5rem)]!"
+            >
               {site.name}
             </Heading>
-            <p className="mt-6 max-w-[38ch] text-lg leading-snug text-fg md:text-xl">
+            <p className="mt-4 max-w-[40ch] text-sm leading-snug text-fg md:text-base">
               {site.intro}
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-2.5">
               {ctas.map((cta) => (
-                <Button key={cta.href} href={cta.href} variant={cta.variant}>
+                <Button
+                  key={cta.href}
+                  href={cta.href}
+                  variant={cta.variant}
+                  className="min-h-10! px-5! text-sm!"
+                >
                   {cta.label}
                 </Button>
               ))}
