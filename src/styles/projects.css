@@ -50,13 +50,11 @@
   position: relative;
   width: 100%;
   height: calc(var(--pw) * 0.75 + 2rem);
-  perspective: 1100px;
-  perspective-origin: 50% 40%;
 }
 @container (min-width: 520px) {
   .pj-ring {
-    --pw: min(52cqw, 420px);
-    --rx: 31cqw;
+    --pw: min(48cqw, 400px);
+    --rx: 34cqw;
     --rz: 19cqw;
   }
 }
@@ -64,7 +62,6 @@
 .pj-track {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
   /*
    * The track sits on the z=0 plane, in front of every panel that has swung back.
    * Left clickable it would swallow their pointer events, so it must not take any.
@@ -79,11 +76,8 @@
   width: var(--pw);
   height: calc(var(--pw) * 0.75);
   margin-left: calc(var(--pw) / -2);
-  transform: translate3d(
-      calc(var(--sx, 0) * var(--rx)),
-      0,
-      calc((var(--cz, 1) - 1) * var(--rz) * 3)
-    )
+  transform: perspective(1100px)
+    translate3d(calc(var(--sx, 0) * var(--rx)), 0, calc((var(--cz, 1) - 1) * var(--rz) * 3))
     rotateY(calc(var(--sx, 0) * 16deg)) scale(calc(0.86 + 0.14 * var(--d, 1)));
   opacity: var(--vis, 1);
   filter: brightness(calc(0.62 + 0.38 * var(--d, 1))) saturate(calc(0.55 + 0.45 * var(--d, 1)));

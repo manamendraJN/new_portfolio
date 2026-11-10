@@ -30,7 +30,9 @@ function panelState(i: number, r: number, n: number) {
     cz: cz.toFixed(4),
     d: ((1 + cz) / 2).toFixed(4),
     // Fully shown at the front and sides, fading out as a panel swings round the back.
-    vis: smooth(-0.35, 0.25, cz).toFixed(4),
+    vis: smooth(0, 0.3, cz).toFixed(4),
+    // Nearer panels always paint over farther ones, so they never cut through each other.
+    z: String(Math.round(((1 + cz) / 2) * 100)),
   };
 }
 
@@ -88,6 +90,7 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
         el.style.setProperty("--cz", s.cz);
         el.style.setProperty("--d", s.d);
         el.style.setProperty("--vis", s.vis);
+        el.style.zIndex = s.z;
         el.dataset.hidden = String(Number(s.vis) < 0.02);
       });
       const a = clamp(Math.round(r), 0, n - 1);
@@ -326,7 +329,13 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
 
   const initial = (i: number) => {
     const s = panelState(i, 0, n);
-    return { "--sx": s.sx, "--cz": s.cz, "--d": s.d, "--vis": s.vis } as CSSProperties;
+    return {
+      "--sx": s.sx,
+      "--cz": s.cz,
+      "--d": s.d,
+      "--vis": s.vis,
+      zIndex: Number(s.z),
+    } as CSSProperties;
   };
 
   return (
