@@ -28,16 +28,17 @@ export function Expertise() {
         </Reveal>
 
         <Rule />
-        <Reveal as="dl" stagger className="grid md:grid-cols-2 md:gap-x-16">
+        {/* Groups read down the left column (01-05), then the right (06-10). */}
+        <Reveal as="dl" stagger className="grid md:grid-flow-col md:grid-rows-5 md:gap-x-16">
           {skills.map((group, i) => (
             <div key={group.id}>
-              <div className="grid grid-cols-12 gap-x-4 gap-y-1 py-4 md:py-5">
-                <dt className="col-span-12 flex items-baseline gap-3 sm:col-span-5">
-                  <Label>{String(i + 1).padStart(2, "0")}</Label>
-                  <span className="text-[0.9375rem] leading-snug font-medium">{group.label}</span>
+              <div className="space-y-1.5 py-4">
+                <dt className="flex items-baseline gap-3">
+                  <Label accent>{String(i + 1).padStart(2, "0")}</Label>
+                  <Label>{group.label}</Label>
                 </dt>
-                <dd className="col-span-12 sm:col-span-7">
-                  <ul className="flex flex-wrap gap-x-2 gap-y-0.5 text-[0.9375rem] leading-snug">
+                <dd>
+                  <ul className="flex flex-wrap gap-x-2 gap-y-0.5 text-base leading-snug">
                     {group.items.map((item, j) => (
                       <li key={item} className="flex items-baseline gap-2">
                         {item}
