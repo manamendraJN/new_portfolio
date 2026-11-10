@@ -407,25 +407,27 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-4">
-              <button
-                type="button"
-                aria-label="Previous project"
-                aria-disabled={active === 0}
-                onClick={() => api.current.step(-1)}
-                className="inline-flex size-11 items-center justify-center rounded-full border border-fg/40 transition-[border-color,background-color,opacity] duration-200 hover:border-fg hover:bg-fg/5 aria-disabled:cursor-default aria-disabled:opacity-35 aria-disabled:hover:border-fg/40 aria-disabled:hover:bg-transparent"
-              >
-                <ChevronLeft aria-hidden="true" size={20} />
-              </button>
-              <button
-                type="button"
-                aria-label="Next project"
-                aria-disabled={active === n - 1}
-                onClick={() => api.current.step(1)}
-                className="inline-flex size-11 items-center justify-center rounded-full border border-fg/40 transition-[border-color,background-color,opacity] duration-200 hover:border-fg hover:bg-fg/5 aria-disabled:cursor-default aria-disabled:opacity-35 aria-disabled:hover:border-fg/40 aria-disabled:hover:bg-transparent"
-              >
-                <ChevronRight aria-hidden="true" size={20} />
-              </button>
+            <div className="mt-6 flex flex-col items-center gap-3">
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  type="button"
+                  aria-label="Previous project"
+                  aria-disabled={active === 0}
+                  onClick={() => api.current.step(-1)}
+                  className="inline-flex size-11 items-center justify-center rounded-full border border-fg/40 transition-[border-color,background-color,opacity] duration-200 hover:border-fg hover:bg-fg/5 aria-disabled:cursor-default aria-disabled:opacity-35 aria-disabled:hover:border-fg/40 aria-disabled:hover:bg-transparent"
+                >
+                  <ChevronLeft aria-hidden="true" size={20} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next project"
+                  aria-disabled={active === n - 1}
+                  onClick={() => api.current.step(1)}
+                  className="inline-flex size-11 items-center justify-center rounded-full border border-fg/40 transition-[border-color,background-color,opacity] duration-200 hover:border-fg hover:bg-fg/5 aria-disabled:cursor-default aria-disabled:opacity-35 aria-disabled:hover:border-fg/40 aria-disabled:hover:bg-transparent"
+                >
+                  <ChevronRight aria-hidden="true" size={20} />
+                </button>
+              </div>
               <Label>
                 {pad(active + 1)} / {pad(n)}
               </Label>
