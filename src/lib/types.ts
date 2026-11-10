@@ -34,6 +34,11 @@ export interface HeroFrameConfig {
   pinViewportHeights: number;
 }
 
+export interface HeroContent {
+  ctas: Array<{ label: string; href: string; variant: "primary" | "secondary" }>;
+  scrollLabel: string;
+}
+
 export interface SiteConfig {
   name: string;
   /** Full professional title, as displayed. */
@@ -54,6 +59,7 @@ export interface SiteConfig {
   nav: NavItem[];
   sections: SectionMeta[];
   hero: HeroFrameConfig;
+  heroContent: HeroContent;
 }
 
 /** An image that is either a real screenshot or a clearly labelled illustration. */

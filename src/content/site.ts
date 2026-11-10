@@ -54,6 +54,13 @@ export const site: SiteConfig = {
     extension: "webp",
     pinViewportHeights: 2.5,
   },
+  heroContent: {
+    ctas: [
+      { label: "View projects", href: "#projects", variant: "primary" },
+      { label: "Get in touch", href: "#contact", variant: "secondary" },
+    ],
+    scrollLabel: "Scroll",
+  },
 };
 
 /** About copy, as written in the details file. One string per paragraph. */
