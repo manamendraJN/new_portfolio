@@ -196,6 +196,14 @@ export function FrameSequence({ children }: { children: ReactNode }) {
         {/* Flat scrim keeps text readable over any frame. Not a gradient. */}
         {status === "ready" && <div className="absolute inset-0 bg-bg/35 md:bg-bg/70" />}
       </div>
+      {/* Phones: a dark panel across the bottom holds the text. Its top edge fades out over the
+          video instead of ending in a straight line. */}
+      <div
+        aria-hidden="true"
+        // The picture is 0.91 x the screen width tall, so the fade runs from 44vw to 91vw: fully
+        // opaque exactly where the video ends.
+        className="pointer-events-none absolute inset-x-0 top-[44vw] bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
+      />
       {/* Fades in over the last frames, handing off to the next section. */}
       <div
         data-hero-dim

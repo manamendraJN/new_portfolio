@@ -57,7 +57,7 @@ export const site: SiteConfig = {
       height: 540,
       visibleX: 0.62,
       focusX: 0.37,
-      anchorY: 0.15,
+      anchorY: 0,
     },
     pad: 4,
     extension: "webp",
