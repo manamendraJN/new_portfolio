@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
-import { Container, Heading, Label, Rule, Section } from "@/components/ui";
+import { Container, Heading, Label, Rule, Section, SectionTitle } from "@/components/ui";
 import { research } from "@/content/research";
 import { site } from "@/content/site";
 
@@ -41,9 +41,7 @@ export function Research() {
     <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
       <Container>
         <Reveal as="header" className="mb-14 md:mb-20">
-          <Heading level={2} id="research-title">
-            {meta.label}
-          </Heading>
+          <SectionTitle id="research-title">{meta.label}</SectionTitle>
         </Reveal>
 
         {/* The plate */}

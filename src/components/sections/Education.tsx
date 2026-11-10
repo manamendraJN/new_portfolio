@@ -1,5 +1,5 @@
 import { CoverParallax, Reveal } from "@/components/motion";
-import { Container, Heading, Label, Rule, Section } from "@/components/ui";
+import { Container, Label, Rule, Section, SectionTitle } from "@/components/ui";
 import { certificates, education } from "@/content/education";
 import { site } from "@/content/site";
 import { isTodo, text } from "@/lib/utils";
@@ -21,9 +21,7 @@ export function Education() {
       <CoverParallax coveredBy="contact">
         <Container>
           <Reveal as="header" className="mb-14 md:mb-20">
-            <Heading level={2} id="education-title">
-              {meta.label}
-            </Heading>
+            <SectionTitle id="education-title">{meta.label}</SectionTitle>
           </Reveal>
 
           <Rule accent />

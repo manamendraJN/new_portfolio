@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion";
-import { Container, Heading, Section } from "@/components/ui";
+import { Container, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
 
@@ -16,9 +16,7 @@ export function Expertise() {
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="expertise-title">
       <Container>
         <Reveal as="header" className="mb-12 md:mb-16">
-          <Heading level={2} id="expertise-title">
-            {meta.label}
-          </Heading>
+          <SectionTitle id="expertise-title">{meta.label}</SectionTitle>
         </Reveal>
 
         <Reveal

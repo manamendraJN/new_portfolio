@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion";
-import { Container, Heading, Label, Rule, Section } from "@/components/ui";
+import { Container, Heading, Label, Rule, Section, SectionTitle } from "@/components/ui";
 import { experience } from "@/content/experience";
 import { site } from "@/content/site";
 import { text } from "@/lib/utils";
@@ -14,9 +14,7 @@ export function Experience() {
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
       <Container>
         <Reveal as="header" className="mb-14 md:mb-20">
-          <Heading level={2} id="experience-title">
-            {meta.label}
-          </Heading>
+          <SectionTitle id="experience-title">{meta.label}</SectionTitle>
         </Reveal>
 
         <Rule accent />
