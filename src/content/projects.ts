@@ -2,14 +2,14 @@ import type { Project } from "@/lib/types";
 
 /**
  * Add a project by adding an entry here; the gallery and /projects/[slug]
- * page are generated from this list. Media stays empty until real screenshots
- * are supplied; any illustration must use kind: "illustration".
+ * page are generated from this list.
+ * Images are your own, hosted on ImageKit: set `cover` (and optionally `gallery`)
+ * to https://ik.imagekit.io/... URLs. Both stay empty until then.
  * Source: portfolio-details.md section 5.
  */
 export const projects: Project[] = [
   {
     slug: "warehouse-management-system",
-    plate: "shelves",
     title: "Warehouse Management System",
     category: "Client web application",
     published: true,
@@ -30,12 +30,12 @@ export const projects: Project[] = [
     reportedOutcome:
       "The project description reports a 20% reduction in operational delays (reported, not independently verified).",
     confidential: false,
-    media: [],
+    cover: "",
+    gallery: [],
     todo: "screenshots",
   },
   {
     slug: "issuesync",
-    plate: "rows",
     title: "IssueSync",
     category: "Issue-tracking web application",
     published: true,
@@ -55,12 +55,12 @@ export const projects: Project[] = [
     description:
       "An issue-tracking application featuring authentication, CRUD operations, reusable navigation, toast notifications, and separate frontend and backend deployment.",
     confidential: false,
-    media: [],
+    cover: "",
+    gallery: [],
     todo: "screenshots",
   },
   {
     slug: "handgesturecontrol",
-    plate: "fan",
     title: "HandGestureControl",
     category: "Computer vision desktop application",
     published: true,
@@ -76,12 +76,12 @@ export const projects: Project[] = [
       "Real-time hand tracking",
     ],
     confidential: false,
-    media: [],
+    cover: "",
+    gallery: [],
     todo: "screenshots or demo video",
   },
   {
     slug: "collab-hub",
-    plate: "network",
     title: "Collab Hub",
     category: "Remote-work collaboration platform",
     published: true,
@@ -90,12 +90,12 @@ export const projects: Project[] = [
     description:
       "A remote-work collaboration platform for task distribution, project management, and file sharing. Its Smart Workload Balancer considers workload, deadlines, and task complexity.",
     confidential: false,
-    media: [],
+    cover: "",
+    gallery: [],
     todo: "screenshots",
   },
   {
     slug: "skillsphere",
-    plate: "steps",
     title: "SkillSphere",
     category: "Learning platform",
     published: true,
@@ -104,7 +104,8 @@ export const projects: Project[] = [
     description:
       "A learning platform connecting learners and instructors through learning paths, progress tracking, interactive video sessions, community forums, and gamification.",
     confidential: false,
-    media: [],
+    cover: "",
+    gallery: [],
     todo: "screenshots",
   },
 ];

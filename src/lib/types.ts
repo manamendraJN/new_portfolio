@@ -79,13 +79,8 @@ export interface Media {
   drawing?: "measurements" | "extraction" | "recommendation";
 }
 
-/** Geometric motif used when a project has no real screenshot yet. */
-export type PlateMotif = "shelves" | "rows" | "fan" | "network" | "steps";
-
 export interface Project {
   slug: string;
-  /** Placeholder visual until a screenshot is supplied. Never presented as a screenshot. */
-  plate: PlateMotif;
   title: string;
   category: string;
   published: boolean;
@@ -100,7 +95,13 @@ export interface Project {
   reportedOutcome?: string;
   /** Confidential work: anonymised copy, no internal screenshots. */
   confidential: boolean;
-  media: Media[];
+  /**
+   * Cover image: your own image hosted on ImageKit (https://ik.imagekit.io/...).
+   * Leave "" until it exists; the carousel shows a typographic panel meanwhile.
+   */
+  cover: string;
+  /** Further ImageKit image URLs shown on the case-study page. */
+  gallery: string[];
   /** Placeholder note listing what is still needed. */
   todo?: string;
 }

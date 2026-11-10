@@ -1,0 +1,111 @@
+/*
+ * Projects: 3D elliptical carousel.
+ *
+ * Each panel is placed on an ellipse lying in depth. JavaScript only writes four
+ * unitless numbers per panel: --sx (sin θ), --cz (cos θ), --d (depth 0..1) and
+ * --vis (visibility 0..1). Everything else, including the radii, is CSS, so the
+ * ellipse adapts to its container width and to mobile without measuring.
+ */
+
+/* ---- Fallback: a plain vertical list ------------------------------------ */
+.projects-list {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-carousel {
+    display: none;
+  }
+  .projects-list {
+    display: block;
+  }
+}
+
+/* ---- Pin distance, reserved up front so layout never shifts -------------- */
+@media (min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .projects-pin:not([data-pin="off"]) {
+    padding-bottom: calc((var(--projects-n, 5) - 1) * var(--projects-step, 60svh));
+  }
+}
+
+/* ---- Stage -------------------------------------------------------------- */
+.pj-stage {
+  container-type: inline-size;
+  touch-action: pan-y; /* horizontal drags are ours; vertical scrolling stays native */
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.pj-stage.is-dragging {
+  cursor: grabbing;
+}
+.pj-stage img {
+  -webkit-user-drag: none;
+}
+
+.pj-ring {
+  /* Mobile: tight ellipse, front panel plus the edges of its two neighbours. */
+  --pw: 64cqw;
+  --rx: 17cqw;
+  --rz: 12cqw;
+  position: relative;
+  width: 100%;
+  height: calc(var(--pw) * 0.75 + 2rem);
+  perspective: 1100px;
+  perspective-origin: 50% 40%;
+}
+@container (min-width: 520px) {
+  .pj-ring {
+    --pw: min(52cqw, 420px);
+    --rx: 31cqw;
+    --rz: 19cqw;
+  }
+}
+
+.pj-track {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  /*
+   * The track sits on the z=0 plane, in front of every panel that has swung back.
+   * Left clickable it would swallow their pointer events, so it must not take any.
+   */
+  pointer-events: none;
+}
+
+.pj-panel {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  width: var(--pw);
+  height: calc(var(--pw) * 0.75);
+  margin-left: calc(var(--pw) / -2);
+  transform: translate3d(
+      calc(var(--sx, 0) * var(--rx)),
+      0,
+      calc((var(--cz, 1) - 1) * var(--rz) * 3)
+    )
+    rotateY(calc(var(--sx, 0) * 16deg)) scale(calc(0.86 + 0.14 * var(--d, 1)));
+  opacity: var(--vis, 1);
+  filter: brightness(calc(0.62 + 0.38 * var(--d, 1))) saturate(calc(0.55 + 0.45 * var(--d, 1)));
+  pointer-events: auto;
+  cursor: pointer;
+}
+.pj-panel[data-front="true"] {
+  filter: none;
+}
+.pj-panel[data-hidden="true"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---- Details: stacked in one grid cell so the height never changes -------- */
+.pj-detail {
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+.pj-detail[data-active="false"] {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}

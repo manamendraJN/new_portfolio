@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
@@ -8,6 +9,8 @@ import { ProjectVisual } from "@/components/sections/ProjectVisual";
 import { site } from "@/content/site";
 import {
   getAdjacentProjects,
+  getCover,
+  getGallery,
   getProject,
   getPublishedProjects,
   projectNumber,
@@ -60,6 +63,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const number = projectNumber(project.slug);
   const adjacent = getAdjacentProjects(project.slug);
+  const gallery = getGallery(project);
 
   return (
     <main id="main" tabIndex={-1} data-theme="light" className="bg-bg text-fg outline-none">
@@ -91,7 +95,26 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </header>
 
-          <ProjectVisual project={project} number={number} wide priority />
+          {getCover(project) && <ProjectVisual project={project} wide priority sizes="100vw" />}
+
+          {gallery.length > 0 && (
+            <ul aria-label="Project images" className="grid gap-6 sm:grid-cols-2">
+              {gallery.map((src, i) => (
+                <li
+                  key={src}
+                  className="relative aspect-[16/10] overflow-hidden border border-line"
+                >
+                  <Image
+                    src={src}
+                    alt={`${project.title}, image ${i + 1}`}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
 
           <div>
             <Rule />

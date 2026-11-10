@@ -18,6 +18,18 @@ export function getAdjacentProjects(slug: string): { prev: Project; next: Projec
   return { prev: list[(i - 1 + list.length) % list.length], next: list[(i + 1) % list.length] };
 }
 
+/** The project's ImageKit cover URL, or null. Confidential work never shows images. */
+export function getCover(project: Project): string | null {
+  if (project.confidential) return null;
+  return project.cover.trim() || null;
+}
+
+/** ImageKit gallery URLs for the case-study page. Empty for confidential work. */
+export function getGallery(project: Project): string[] {
+  if (project.confidential) return [];
+  return project.gallery.map((u) => u.trim()).filter(Boolean);
+}
+
 /** Two-digit position of a project in the published list, e.g. "01". */
 export function projectNumber(slug: string): string {
   const i = getPublishedProjects().findIndex((p) => p.slug === slug);

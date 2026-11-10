@@ -3,13 +3,14 @@
  * All motion in the site goes through this file; there is no other animation library.
  */
 import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 let registered = false;
 
 export function getGsap() {
   if (!registered && typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     // Mobile browser bars resize the viewport while scrolling; don't re-measure on those.
     ScrollTrigger.config({ ignoreMobileResize: true });
     registered = true;
