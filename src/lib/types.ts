@@ -71,8 +71,13 @@ export interface Media {
   caption?: string;
 }
 
+/** Geometric motif used when a project has no real screenshot yet. */
+export type PlateMotif = "shelves" | "rows" | "fan" | "network" | "steps";
+
 export interface Project {
   slug: string;
+  /** Placeholder visual until a screenshot is supplied. Never presented as a screenshot. */
+  plate: PlateMotif;
   title: string;
   category: string;
   published: boolean;

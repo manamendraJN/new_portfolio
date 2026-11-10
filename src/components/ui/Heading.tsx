@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Level = 1 | 2 | 3 | 4;
-type Variant = "hero" | "section" | "title";
+type Variant = "hero" | "section" | "project" | "title";
 
 interface HeadingProps {
   level: Level;
@@ -17,6 +17,8 @@ const styles: Record<Variant, string> = {
   hero: "font-serif text-[length:var(--text-hero)] leading-[0.98] tracking-[-0.015em] font-normal",
   section:
     "font-serif text-[length:var(--text-section)] leading-[1.08] tracking-[-0.01em] font-normal",
+  project:
+    "font-sans text-[length:clamp(1.5rem,1.2rem+1.4vw,2.25rem)] leading-[1.15] tracking-[-0.01em] font-medium",
   title: "font-sans text-[length:var(--text-title)] leading-[1.25] tracking-[-0.005em] font-medium",
 };
 

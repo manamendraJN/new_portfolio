@@ -9,6 +9,7 @@ import type { Project } from "@/lib/types";
 export const projects: Project[] = [
   {
     slug: "warehouse-management-system",
+    plate: "shelves",
     title: "Warehouse Management System",
     category: "Client web application",
     published: true,
@@ -34,6 +35,7 @@ export const projects: Project[] = [
   },
   {
     slug: "issuesync",
+    plate: "rows",
     title: "IssueSync",
     category: "Issue-tracking web application",
     published: true,
@@ -58,6 +60,7 @@ export const projects: Project[] = [
   },
   {
     slug: "handgesturecontrol",
+    plate: "fan",
     title: "HandGestureControl",
     category: "Computer vision desktop application",
     published: true,
@@ -78,6 +81,7 @@ export const projects: Project[] = [
   },
   {
     slug: "collab-hub",
+    plate: "network",
     title: "Collab Hub",
     category: "Remote-work collaboration platform",
     published: true,
@@ -91,6 +95,7 @@ export const projects: Project[] = [
   },
   {
     slug: "skillsphere",
+    plate: "steps",
     title: "SkillSphere",
     category: "Learning platform",
     published: true,

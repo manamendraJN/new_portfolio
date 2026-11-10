@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
@@ -32,7 +33,11 @@ function sectionAt(y: number) {
  * the section behind it and marks the active section.
  */
 export function Nav() {
-  const [state, setState] = useState<NavState>({ active: "hero", theme: "dark" });
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [state, setState] = useState<NavState>(
+    isHome ? { active: "hero", theme: "dark" } : { active: "", theme: "light" },
+  );
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -42,6 +47,19 @@ export function Nav() {
     let raf = 0;
     const update = () => {
       raf = 0;
+      // Pages without the home sections (case studies): solid bar in the page theme.
+      // Route by pathname: the previous page's DOM can stay mounted but hidden.
+      if (!isHome) {
+        const visible = [...document.querySelectorAll<HTMLElement>("main[data-theme]")].filter(
+          (m) => m.getClientRects().length > 0,
+        );
+        const pageTheme = visible[visible.length - 1]?.getAttribute("data-theme");
+        const next: NavState = { active: "", theme: pageTheme === "dark" ? "dark" : "light" };
+        setState((prev) =>
+          prev.active === next.active && prev.theme === next.theme ? prev : next,
+        );
+        return;
+      }
       const h = headerRef.current?.offsetHeight ?? 64;
       // The section just below the bar sets the bar theme and, normally, the active link.
       const under = sectionAt(h + 1);
@@ -63,7 +81,7 @@ export function Nav() {
       window.removeEventListener("resize", schedule);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isHome]);
 
   const close = useCallback((returnFocus = false) => {
     setOpen(false);
