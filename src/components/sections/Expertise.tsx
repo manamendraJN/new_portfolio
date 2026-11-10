@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
@@ -13,15 +14,15 @@ export function Expertise() {
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="expertise-title">
       <Container>
-        <header className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-14 md:mb-20">
           <Label accent>{meta.number}</Label>
           <Heading level={2} id="expertise-title" className="mt-4">
             {meta.label}
           </Heading>
-        </header>
+        </Reveal>
 
         <Rule />
-        <dl>
+        <Reveal as="dl" stagger>
           {skills.map((group, i) => (
             <div key={group.id}>
               <div className="grid grid-cols-12 gap-x-4 gap-y-3 py-6 md:gap-x-6 md:py-8">
@@ -47,7 +48,7 @@ export function Expertise() {
               <Rule />
             </div>
           ))}
-        </dl>
+        </Reveal>
       </Container>
     </Section>
   );

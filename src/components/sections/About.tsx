@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Button, Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { about, site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
@@ -13,17 +14,17 @@ export function About() {
   );
 
   return (
-    <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="about-title">
+    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="about-title">
       <Container grid className="gap-y-12">
-        <div className="col-span-12 lg:col-span-4">
+        <Reveal className="col-span-12 lg:col-span-4">
           <Label accent>{meta.number}</Label>
           <Rule accent className="mt-4 mb-8 w-12!" />
           <Heading level={2} id="about-title">
             {meta.label}
           </Heading>
-        </div>
+        </Reveal>
 
-        <div className="col-span-12 lg:col-span-7 lg:col-start-6">
+        <Reveal className="col-span-12 lg:col-span-7 lg:col-start-6">
           <p className="max-w-[34em] text-[length:clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.4] tracking-[-0.01em] text-balance">
             {lead}
           </p>
@@ -51,7 +52,7 @@ export function About() {
               </li>
             )}
           </ul>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

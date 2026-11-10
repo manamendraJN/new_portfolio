@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
@@ -38,17 +39,17 @@ export function Research() {
   ];
 
   return (
-    <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
+    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
       <Container>
-        <header className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-14 md:mb-20">
           <Label accent>{meta.number}</Label>
           <Heading level={2} id="research-title" className="mt-4">
             {meta.label}
           </Heading>
-        </header>
+        </Reveal>
 
         {/* The plate */}
-        <article aria-labelledby="publication-title" className="border border-line">
+        <Reveal as="article" aria-labelledby="publication-title" className="border border-line">
           <div className="space-y-6 p-6 md:p-10 lg:p-14">
             <p className="flex flex-wrap gap-x-5 gap-y-1">
               <Label accent>Published paper</Label>
@@ -107,7 +108,7 @@ export function Research() {
               </ul>
             </section>
           </div>
-        </article>
+        </Reveal>
 
         {/* Original illustrations of my contribution */}
         <div className="mt-16 space-y-8 md:mt-24">
@@ -119,11 +120,11 @@ export function Research() {
               Original schematic illustrations of the module. They show the idea, not results.
             </p>
           </div>
-          <div className="grid gap-x-8 gap-y-12 md:grid-cols-3">
+          <Reveal stagger className="grid gap-x-8 gap-y-12 md:grid-cols-3">
             {r.illustrations.map((item) => (
               <ResearchIllustration key={item.caption} item={item} />
             ))}
-          </div>
+          </Reveal>
         </div>
       </Container>
     </Section>

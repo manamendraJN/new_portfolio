@@ -1,3 +1,4 @@
+import { Parallax, Reveal } from "@/components/motion";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { site } from "@/content/site";
 import { getPublishedProjects, projectNumber } from "@/lib/content";
@@ -14,12 +15,12 @@ export function Projects() {
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="projects-title">
       <Container>
-        <header className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-14 md:mb-20">
           <Label accent>{meta.number}</Label>
           <Heading level={2} id="projects-title" className="mt-4">
             {meta.label}
           </Heading>
-        </header>
+        </Reveal>
 
         <ol>
           {list.map((p, i) => {
@@ -28,12 +29,15 @@ export function Projects() {
             return (
               <li key={p.slug}>
                 <Rule />
-                <article
+                <Reveal
+                  as="article"
                   aria-labelledby={`project-${p.slug}`}
-                  className="grid grid-cols-12 items-center gap-x-6 gap-y-8 py-12 md:py-16 lg:gap-x-10 lg:py-24"
+                  className="group grid grid-cols-12 items-center gap-x-6 gap-y-8 py-12 md:py-16 lg:gap-x-10 lg:py-24"
                 >
                   <div className={cn("col-span-12 lg:col-span-7", flip && "lg:order-2")}>
-                    <ProjectVisual project={p} number={number} />
+                    <Parallax amount={14}>
+                      <ProjectVisual project={p} number={number} />
+                    </Parallax>
                   </div>
 
                   <div
@@ -62,7 +66,7 @@ export function Projects() {
 
                     <ProjectLinks project={p} caseStudy />
                   </div>
-                </article>
+                </Reveal>
               </li>
             );
           })}

@@ -17,12 +17,13 @@ type NativeProps = Common & { href?: undefined } & Omit<
   >;
 
 const base =
-  "inline-flex min-h-11 items-center justify-center gap-2 font-sans text-[0.9375rem] font-medium transition-colors duration-200";
+  "inline-flex min-h-11 items-center justify-center gap-2 font-sans text-[0.9375rem] font-medium transition-[color,background-color,border-color,transform,text-decoration-color,text-underline-offset] duration-200";
 
 const variants: Record<Variant, string> = {
-  primary: "rounded-full bg-fg px-6 text-bg hover:bg-accent",
-  secondary: "rounded-full border border-fg/40 px-6 text-fg hover:border-fg hover:bg-fg/5",
-  link: "px-0 text-fg underline decoration-line decoration-1 hover:text-link hover:decoration-link",
+  primary: "rounded-full bg-fg px-6 text-bg hover:bg-accent active:translate-y-px",
+  secondary:
+    "rounded-full border border-fg/40 px-6 text-fg hover:border-fg hover:bg-fg/5 active:translate-y-px",
+  link: "px-0 text-fg underline decoration-line decoration-1 underline-offset-[0.25em] hover:text-link hover:decoration-link hover:underline-offset-[0.4em]",
 };
 
 /** Renders a link for hrefs and a native button otherwise. */

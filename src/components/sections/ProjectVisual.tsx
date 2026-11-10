@@ -173,7 +173,7 @@ export function ProjectVisual({ project, number, wide, priority, className }: Pr
             fill
             priority={priority}
             sizes="(min-width: 1024px) 56vw, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         </div>
         {shot.kind === "illustration" && (
@@ -188,11 +188,15 @@ export function ProjectVisual({ project, number, wide, priority, className }: Pr
   return (
     <div
       aria-hidden="true"
-      className={cn("relative border border-line bg-surface", aspect, className)}
+      className={cn(
+        "relative border border-line bg-surface transition-colors duration-500 group-hover:border-accent",
+        aspect,
+        className,
+      )}
     >
       <svg
         viewBox="0 0 400 300"
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         preserveAspectRatio="xMidYMid meet"
       >
         <Motif kind={project.plate} />

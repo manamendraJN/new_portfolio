@@ -16,7 +16,7 @@ type Status = "idle" | "sending" | "success" | "error";
 const FIELDS: ContactField[] = ["name", "email", "message"];
 
 const inputClass =
-  "w-full border-0 border-b border-line bg-transparent py-3 text-base text-fg placeholder:text-muted focus:border-fg focus-visible:outline-offset-4";
+  "w-full border-0 border-b border-line bg-transparent py-3 text-base text-fg transition-[border-color,box-shadow] duration-200 placeholder:text-muted focus:border-fg focus:shadow-[0_1px_0_0_var(--fg)] focus-visible:outline-offset-4";
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   return (

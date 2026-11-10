@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { experience } from "@/content/experience";
 import { site } from "@/content/site";
@@ -12,18 +13,19 @@ export function Experience() {
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
       <Container>
-        <header className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-14 md:mb-20">
           <Label accent>{meta.number}</Label>
           <Heading level={2} id="experience-title" className="mt-4">
             {meta.label}
           </Heading>
-        </header>
+        </Reveal>
 
         <Rule accent />
         <ol>
           {entries.map((e) => (
             <li key={e.id}>
-              <article
+              <Reveal
+                as="article"
                 aria-labelledby={`exp-${e.id}`}
                 className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12"
               >
@@ -71,7 +73,7 @@ export function Experience() {
                     </ul>
                   )}
                 </div>
-              </article>
+              </Reveal>
               <Rule />
             </li>
           ))}

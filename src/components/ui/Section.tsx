@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { ThemeEdge } from "@/components/motion/ThemeEdge";
 import type { Theme } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +10,10 @@ interface SectionProps {
   tone?: "base" | "surface";
   /** Remove default vertical padding (e.g. the hero). */
   flush?: boolean;
+  /** Draw a hairline along the top where the page changes between dark and light. */
+  edge?: boolean;
   className?: string;
+  style?: CSSProperties;
   "aria-label"?: string;
   "aria-labelledby"?: string;
   children: ReactNode;
@@ -21,7 +25,9 @@ export function Section({
   theme,
   tone = "base",
   flush,
+  edge,
   className,
+  style,
   children,
   ...aria
 }: SectionProps) {
@@ -35,8 +41,10 @@ export function Section({
         !flush && "py-[var(--section-y)]",
         className,
       )}
+      style={style}
       {...aria}
     >
+      {edge && <ThemeEdge />}
       {children}
     </section>
   );

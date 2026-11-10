@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion";
 import { Container, Heading, Label, Rule, Section } from "@/components/ui";
 import { certificates, education } from "@/content/education";
 import { site } from "@/content/site";
@@ -10,19 +11,25 @@ export function Education() {
   if (!meta) return null;
 
   return (
-    <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="education-title">
+    <Section
+      edge
+      id={meta.id}
+      theme={meta.theme}
+      tone={meta.tone}
+      aria-labelledby="education-title"
+    >
       <Container>
-        <header className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-14 md:mb-20">
           <Label accent>{meta.number}</Label>
           <Heading level={2} id="education-title" className="mt-4">
             {meta.label}
           </Heading>
-        </header>
+        </Reveal>
 
         <Rule accent />
 
         {/* Row 1: degree */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12">
+        <Reveal className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12">
           <h3 className="col-span-12 md:col-span-3">
             <Label>Degree</Label>
           </h3>
@@ -43,19 +50,19 @@ export function Education() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
         <Rule />
 
         {/* Row 2: certificates */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8 py-8 md:py-12">
+        <Reveal className="grid grid-cols-12 gap-x-6 gap-y-8 py-8 md:py-12">
           <h3 className="col-span-12 md:col-span-3">
             <Label>Certificates</Label>
           </h3>
           <div className="col-span-12 md:col-span-8 md:col-start-5">
             <CertificateGallery items={certificates} />
           </div>
-        </div>
+        </Reveal>
         <Rule />
       </Container>
     </Section>

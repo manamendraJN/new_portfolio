@@ -64,8 +64,18 @@ a {
   }
 }
 
+/*
+ * No CSS smooth scrolling: it fights ScrollTrigger, which repositions scroll while
+ * measuring. Anchor links jump; scrolling itself stays fully native.
+ */
+
+/*
+ * Hero pin distance, reserved in CSS so the page is the same height before and
+ * after JavaScript runs (anchor links and deep links stay put). Only when motion
+ * is allowed; the frame sequence sets data-pin="off" if it cannot pin.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+  .hero-pin:not([data-pin="off"]) {
+    min-height: calc(100svh * (1 + var(--hero-pin-vh, 2.5)));
   }
 }
