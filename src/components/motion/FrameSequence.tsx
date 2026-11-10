@@ -73,7 +73,7 @@ export function FrameSequence({ children }: { children: ReactNode }) {
       for (let d = 0; d < cfg.count; d++) {
         const hit = frames[index - d] ? index - d : frames[index + d] ? index + d : -1;
         if (hit >= 0) {
-          drawCover(canvas, frames[hit]!, cfg[variant].focusX);
+          drawCover(canvas, frames[hit]!, cfg[variant]);
           canvas.dataset.target = String(index + 1);
           canvas.dataset.drawn = String(hit + 1);
           return;
@@ -194,7 +194,7 @@ export function FrameSequence({ children }: { children: ReactNode }) {
           className={`absolute inset-0 h-full w-full ${status === "ready" ? "opacity-100" : "opacity-0"}`}
         />
         {/* Flat scrim keeps text readable over any frame. Not a gradient. */}
-        {status === "ready" && <div className="absolute inset-0 bg-bg/70" />}
+        {status === "ready" && <div className="absolute inset-0 bg-bg/35 md:bg-bg/70" />}
       </div>
       {/* Fades in over the last frames, handing off to the next section. */}
       <div
