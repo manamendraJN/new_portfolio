@@ -61,6 +61,10 @@ export const site: SiteConfig = {
     ],
     scrollLabel: "Scroll",
   },
+  contactContent: {
+    headline: "Get in touch",
+    note: "Use the form, or find me on GitHub and LinkedIn.",
+  },
 };
 
 /** About copy, as written in the details file. One string per paragraph. */

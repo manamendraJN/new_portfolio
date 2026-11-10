@@ -39,6 +39,11 @@ export interface HeroContent {
   scrollLabel: string;
 }
 
+export interface ContactContent {
+  headline: string;
+  note: string;
+}
+
 export interface SiteConfig {
   name: string;
   /** Full professional title, as displayed. */
@@ -60,6 +65,7 @@ export interface SiteConfig {
   sections: SectionMeta[];
   hero: HeroFrameConfig;
   heroContent: HeroContent;
+  contactContent: ContactContent;
 }
 
 /** An image that is either a real screenshot or a clearly labelled illustration. */
@@ -69,6 +75,8 @@ export interface Media {
   alt: string;
   kind: "screenshot" | "illustration";
   caption?: string;
+  /** For original illustrations drawn in code, which drawing to render. */
+  drawing?: "measurements" | "extraction" | "recommendation";
 }
 
 /** Geometric motif used when a project has no real screenshot yet. */
