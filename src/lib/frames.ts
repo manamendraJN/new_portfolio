@@ -21,6 +21,7 @@ export function hasFrames(cfg: HeroFrameConfig): boolean {
 export function drawCover(
   canvas: HTMLCanvasElement,
   img: CanvasImageSource & { width: number; height: number },
+  focusX = 0.5,
 ) {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const w = Math.max(1, Math.round(canvas.clientWidth * dpr));
@@ -32,5 +33,5 @@ export function drawCover(
   const scale = Math.max(w / img.width, h / img.height);
   const dw = img.width * scale;
   const dh = img.height * scale;
-  ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  ctx.drawImage(img, (w - dw) * focusX, (h - dh) / 2, dw, dh);
 }

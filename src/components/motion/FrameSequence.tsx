@@ -73,7 +73,7 @@ export function FrameSequence({ children }: { children: ReactNode }) {
       for (let d = 0; d < cfg.count; d++) {
         const hit = frames[index - d] ? index - d : frames[index + d] ? index + d : -1;
         if (hit >= 0) {
-          drawCover(canvas, frames[hit]!);
+          drawCover(canvas, frames[hit]!, cfg[variant].focusX);
           canvas.dataset.target = String(index + 1);
           canvas.dataset.drawn = String(hit + 1);
           return;

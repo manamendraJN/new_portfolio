@@ -25,8 +25,9 @@ export interface SocialLink {
 export interface HeroFrameConfig {
   /** Frame count per set. 0 means no frames yet: show the static fallback. */
   count: number;
-  desktop: { path: string; width: number; height: number };
-  mobile: { path: string; width: number; height: number };
+  desktop: { path: string; width: number; height: number; focusX?: number };
+  /** focusX 0..1: which part of the frame stays in view when it is cropped (0 left, 1 right). */
+  mobile: { path: string; width: number; height: number; focusX?: number };
   /** Printf-style: path + filename pattern, 1-indexed, zero padded to `pad`. */
   pad: number;
   extension: "webp";

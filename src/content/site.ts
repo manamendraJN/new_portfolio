@@ -49,7 +49,8 @@ export const site: SiteConfig = {
   hero: {
     count: 120,
     desktop: { path: "/media/hero/desktop/", width: 1920, height: 1080 },
-    mobile: { path: "/media/hero/mobile/", width: 960, height: 540 },
+    // On a portrait phone only a narrow strip of the frame fits; 0.15 keeps the coffee cup in view.
+    mobile: { path: "/media/hero/mobile/", width: 960, height: 540, focusX: 0.15 },
     pad: 4,
     extension: "webp",
     pinViewportHeights: 2.5,
