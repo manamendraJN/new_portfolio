@@ -2,7 +2,6 @@ import { ContactField, Reveal } from "@/components/motion";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
-import { ContactConnect } from "./ContactConnect";
 import { ContactForm } from "./ContactForm";
 
 /** Contact: one large headline and a minimal form. Charcoal, closing the page. */
@@ -48,8 +47,6 @@ export function Contact() {
               </li>
             ))}
           </ul>
-
-          <ContactConnect />
         </Reveal>
 
         <Reveal className="relative col-span-12 lg:col-span-5 lg:col-start-8">
