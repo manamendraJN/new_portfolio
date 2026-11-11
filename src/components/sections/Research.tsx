@@ -96,11 +96,9 @@ export function Research() {
               <h4 id="group-work" className="leading-4">
                 <Label accent>Other members&rsquo; contributions</Label>
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-1 text-muted">
                 {r.groupWork.map((g) => (
-                  <li key={g} className="text-[length:var(--text-title)] leading-snug font-medium">
-                    {g}
-                  </li>
+                  <li key={g}>{g}</li>
                 ))}
               </ul>
             </section>
