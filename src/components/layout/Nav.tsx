@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 import type { Theme } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -42,6 +42,8 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const [ind, setInd] = useState<{ left: number; width: number } | null>(null);
 
   // Track the section under the bar: it sets the active link and the bar theme.
   useEffect(() => {
@@ -83,6 +85,24 @@ export function Nav() {
       if (raf) cancelAnimationFrame(raf);
     };
   }, [isHome]);
+
+  // Slide the highlight pill under the active link.
+  useLayoutEffect(() => {
+    const measure = () => {
+      const list = listRef.current;
+      const link = list?.querySelector<HTMLElement>('a[aria-current="true"]');
+      if (!list || !link) {
+        setInd(null);
+        return;
+      }
+      const l = link.getBoundingClientRect();
+      const r = list.getBoundingClientRect();
+      setInd({ left: l.left - r.left, width: l.width });
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [state.active]);
 
   const close = useCallback((returnFocus = false) => {
     setOpen(false);
@@ -142,55 +162,67 @@ export function Nav() {
       <header
         ref={headerRef}
         data-theme={theme}
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 h-16 border-b text-fg backdrop-blur-lg transition-colors duration-200",
-          // Transparent and blurred. Past the hero a light tint of the section colour keeps the
-          // links readable over whatever scrolls underneath.
-          overHero ? "border-transparent bg-transparent" : "border-line/50 bg-bg/40",
-        )}
+        className="pointer-events-none fixed inset-x-0 top-0 z-50 h-16 text-fg"
       >
-        <div className="mx-auto flex h-full w-full max-w-[calc(var(--content-max)+2*var(--gutter))] items-center justify-between px-[var(--gutter)]">
-          <Link
-            href="/#hero"
-            onClick={() => close()}
-            className="text-[0.9375rem] font-medium tracking-tight transition-colors hover:text-link"
+        <div className="mx-auto w-full max-w-[calc(var(--content-max)+2*var(--gutter))] px-3 pt-2 md:px-[var(--gutter)]">
+          <div
+            className={cn(
+              "pointer-events-auto flex h-12 items-center justify-between rounded-full border pr-1.5 pl-5 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300",
+              // A floating glass pill. Clear over the hero video, a tint of the section colour after it.
+              overHero
+                ? "border-white/15 bg-black/25 shadow-none"
+                : "border-line/60 bg-bg/65 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.35)]",
+            )}
           >
-            {site.name}
-          </Link>
+            <Link
+              href="/#hero"
+              onClick={() => close()}
+              className="text-[0.9375rem] font-medium tracking-tight transition-colors hover:text-link"
+            >
+              {site.name}
+            </Link>
 
-          <nav aria-label="Primary" className="hidden md:block">
-            <ul className="flex items-center gap-7">
-              {site.nav.map((item) => {
-                const isActive = `#${state.active}` === item.href;
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={`/${item.href}`}
-                      aria-current={isActive ? "true" : undefined}
-                      className={cn(
-                        "inline-flex min-h-11 items-center border-b py-1 text-sm transition-colors hover:text-link",
-                        isActive ? "border-accent" : "border-transparent",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+            <nav aria-label="Primary" className="hidden md:block">
+              <ul ref={listRef} className="relative flex items-center gap-1">
+                {ind && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-1 left-0 rounded-full bg-fg/10 ring-1 ring-fg/10 transition-[transform,width] duration-300 ease-out"
+                    style={{ width: ind.width, transform: `translateX(${ind.left}px)` }}
+                  />
+                )}
+                {site.nav.map((item) => {
+                  const isActive = `#${state.active}` === item.href;
+                  return (
+                    <li key={item.href} className="relative">
+                      <Link
+                        href={`/${item.href}`}
+                        aria-current={isActive ? "true" : undefined}
+                        className={cn(
+                          "inline-flex h-9 items-center rounded-full px-3.5 text-sm transition-colors hover:text-link",
+                          isActive ? "font-medium" : "text-fg/80",
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
 
-          <button
-            ref={toggleRef}
-            type="button"
-            aria-expanded={open}
-            aria-controls={MENU_ID}
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-            className="-mr-2 inline-flex size-11 items-center justify-center transition-colors hover:text-link md:hidden"
-          >
-            {open ? <X aria-hidden="true" size={22} /> : <Menu aria-hidden="true" size={22} />}
-          </button>
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-expanded={open}
+              aria-controls={MENU_ID}
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex size-10 items-center justify-center rounded-full transition-colors hover:bg-fg/10 hover:text-link md:hidden"
+            >
+              {open ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
+            </button>
+          </div>
         </div>
       </header>
 
