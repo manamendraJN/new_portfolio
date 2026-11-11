@@ -125,6 +125,7 @@ html:has(dialog[open]) {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit; /* keep rounded corners (Contact) clean */
   z-index: -1;
   pointer-events: none;
   background-image:
