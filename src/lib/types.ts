@@ -45,6 +45,8 @@ export interface HeroFrameConfig {
   extension: "webp";
   /** Scroll distance of the pin, in viewport heights. */
   pinViewportHeights: number;
+  /** Same, on phones (below 768px): a shorter scroll keeps the page compact. */
+  pinViewportHeightsMobile: number;
 }
 
 export interface HeroContent {
@@ -69,7 +71,10 @@ export interface SiteConfig {
   url: string | Todo;
   email: string | Todo;
   /** Where the contact form delivers. */
-  contactTo: string | Todo;
+  /** Local Sri Lankan number as written, e.g. "0764390987". */
+  whatsapp: string;
+  /** Local Sri Lankan number as written, e.g. "0768685811". */
+  mobile: string;
   cvUrl: string | Todo;
   portrait: string | Todo;
   social: SocialLink[];

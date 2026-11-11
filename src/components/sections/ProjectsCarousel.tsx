@@ -407,7 +407,7 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col items-center gap-3">
+            <div className="mt-3 flex flex-col items-center gap-2 md:mt-6 md:gap-3">
               <div className="flex items-center justify-center gap-4">
                 <button
                   type="button"

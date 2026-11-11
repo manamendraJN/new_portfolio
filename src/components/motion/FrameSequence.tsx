@@ -113,7 +113,7 @@ export function FrameSequence({ children }: { children: ReactNode }) {
           scrollTrigger: {
             trigger: stage,
             start: "top top",
-            end: `+=${cfg.pinViewportHeights * 100}%`,
+            end: `+=${(window.matchMedia("(max-width: 767px)").matches ? cfg.pinViewportHeightsMobile : cfg.pinViewportHeights) * 100}%`,
             pin: true,
             pinSpacing: false, // the section already reserves the distance in CSS
             scrub: 0.4,

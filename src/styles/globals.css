@@ -92,22 +92,28 @@ a {
   }
 }
 
-/*
- * Contact slides up over Education like a curtain: Education stays held in place (sticky,
- * see CoverParallax) while Contact, which is at least a full screen tall, covers it.
- * Motion only; reduced motion keeps a plain stack.
- */
-@media (prefers-reduced-motion: no-preference) {
-  #contact {
-    position: relative;
-    z-index: 2;
-    min-height: 100svh;
-  }
-}
-
 /* While a modal dialog (certificate viewer) is open, the page behind does not scroll. The
    gutter is kept so the layout does not shift when the scrollbar disappears. */
 html:has(dialog[open]) {
   overflow: hidden;
   scrollbar-gutter: stable;
+}
+
+/*
+ * Curtain: Contact rises over Education while Education is held in place (sticky, see
+ * CoverParallax). No extra space anywhere; Contact just sits above Education in the stacking
+ * order. Motion only; reduced motion keeps a plain stack.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  #contact {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Phones: a shorter hero pin (same mechanism, less scrolling). */
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .hero-pin:not([data-pin="off"]) {
+    min-height: calc(100svh * (1 + var(--hero-pin-vh-mobile, 1)));
+  }
 }

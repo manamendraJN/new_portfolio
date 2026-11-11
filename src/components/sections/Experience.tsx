@@ -13,7 +13,7 @@ export function Experience() {
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
       <Container>
-        <Reveal as="header" className="mb-14 md:mb-20">
+        <Reveal as="header" className="mb-6 md:mb-20">
           <SectionTitle id="experience-title">{meta.label}</SectionTitle>
         </Reveal>
 
@@ -24,7 +24,7 @@ export function Experience() {
               <Reveal
                 as="article"
                 aria-labelledby={`exp-${e.id}`}
-                className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12"
+                className="grid grid-cols-12 gap-x-6 gap-y-2 py-4 md:gap-y-4 md:py-12"
               >
                 <p className="col-span-12 md:col-span-3">
                   <Label as="span" accent>
@@ -32,7 +32,7 @@ export function Experience() {
                   </Label>
                 </p>
 
-                <div className="col-span-12 space-y-4 md:col-span-8 md:col-start-5">
+                <div className="col-span-12 space-y-2 md:col-span-8 md:col-start-5 md:space-y-4">
                   <div className="space-y-1">
                     <Heading level={3} variant="title" id={`exp-${e.id}`}>
                       {text(e.role)}

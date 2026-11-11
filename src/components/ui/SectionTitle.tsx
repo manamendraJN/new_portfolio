@@ -14,11 +14,11 @@ interface SectionTitleProps {
 export function SectionTitle({ id, children }: SectionTitleProps) {
   return (
     <div>
-      <span aria-hidden="true" className="mb-5 block h-0.5 w-12 bg-accent" />
+      <span aria-hidden="true" className="mb-3 block h-0.5 w-12 bg-accent md:mb-5" />
       <Heading
         level={2}
         id={id}
-        className="text-[length:clamp(2.25rem,1.5rem+3vw,3.5rem)]! leading-[1.02]!"
+        className="text-[length:clamp(1.75rem,0.9rem+3.6vw,3.5rem)]! leading-[1.02]!"
       >
         {children}
       </Heading>

@@ -20,18 +20,21 @@ export function Expertise() {
       aria-labelledby="expertise-title"
       className="py-[calc(var(--section-y)*0.7)]!"
     >
-      <Container grid className="gap-y-10">
+      <Container grid className="gap-y-6 md:gap-y-10">
         <Reveal as="header" className="col-span-12 lg:col-span-4">
           <SectionTitle id="expertise-title">{meta.label}</SectionTitle>
         </Reveal>
 
         {/* Groups flow down each column and pack by height, so there are no gaps or orphans. */}
-        <Reveal as="dl" stagger className="col-span-12 sm:columns-2 sm:gap-x-12 lg:col-span-8">
+        <Reveal as="dl" stagger className="col-span-12 columns-2 gap-x-5 sm:gap-x-12 lg:col-span-8">
           {skills.map((group) => (
-            <div key={group.id} className="mb-6 break-inside-avoid space-y-1.5">
-              <dt className="text-base font-medium">{group.label}</dt>
+            <div
+              key={group.id}
+              className="mb-4 break-inside-avoid space-y-1 md:mb-6 md:space-y-1.5"
+            >
+              <dt className="text-sm font-medium md:text-base">{group.label}</dt>
               <dd>
-                <ul className="flex flex-wrap gap-x-1.5 gap-y-0.5 text-[0.9375rem] leading-relaxed text-muted">
+                <ul className="flex flex-wrap gap-x-1.5 gap-y-0.5 text-[0.8125rem] leading-snug text-muted sm:text-[0.9375rem] sm:leading-relaxed">
                   {group.items.map((item, j) => (
                     <li key={item}>
                       {item}

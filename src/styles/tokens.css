@@ -44,3 +44,12 @@
   --section-y: clamp(4rem, 2.6rem + 5.5vw, 10rem); /* 64-160px */
   --measure: 68ch;
 }
+
+/* Phones: a more compact page. Smaller section spacing and text; desktop is unchanged. */
+@media (max-width: 767px) {
+  :root {
+    --section-y: 2.5rem;
+    --text-body: 0.9375rem;
+    --text-title: 1.0625rem;
+  }
+}

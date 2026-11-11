@@ -18,7 +18,7 @@ const styles: Record<Variant, string> = {
   section:
     "font-serif text-[length:var(--text-section)] leading-[1.08] tracking-[-0.01em] font-normal",
   project:
-    "font-sans text-[length:clamp(1.5rem,1.2rem+1.4vw,2.25rem)] leading-[1.15] tracking-[-0.01em] font-medium",
+    "font-sans text-[length:clamp(1.125rem,0.7rem+1.8vw,2.25rem)] leading-[1.15] tracking-[-0.01em] font-medium",
   title: "font-sans text-[length:var(--text-title)] leading-[1.25] tracking-[-0.005em] font-medium",
 };
 

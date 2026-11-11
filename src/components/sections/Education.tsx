@@ -20,18 +20,18 @@ export function Education() {
     >
       <CoverParallax coveredBy="contact">
         <Container>
-          <Reveal as="header" className="mb-14 md:mb-20">
+          <Reveal as="header" className="mb-6 md:mb-20">
             <SectionTitle id="education-title">{meta.label}</SectionTitle>
           </Reveal>
 
           <Rule accent />
 
           {/* Row 1: degree */}
-          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-12">
+          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-2 py-4 md:gap-y-4 md:py-12">
             <h3 className="col-span-12 md:col-span-3">
               <Label>Degree</Label>
             </h3>
-            <ul className="col-span-12 space-y-8 md:col-span-8 md:col-start-5">
+            <ul className="col-span-12 space-y-4 md:col-span-8 md:col-start-5 md:space-y-8">
               {education.map((e) => (
                 <li key={e.id} className="space-y-2">
                   <p className="text-[length:var(--text-title)] leading-snug font-medium">
@@ -53,7 +53,7 @@ export function Education() {
           <Rule />
 
           {/* Row 2: certificates */}
-          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-8 py-8 md:py-12">
+          <Reveal className="grid grid-cols-12 gap-x-6 gap-y-3 py-4 md:gap-y-8 md:py-12">
             <h3 className="col-span-12 md:col-span-3">
               <Label>Certificates</Label>
             </h3>

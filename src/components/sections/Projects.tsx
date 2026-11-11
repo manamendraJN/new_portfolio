@@ -18,7 +18,7 @@ export function Projects() {
 
   /** The same heading for the carousel (pinned with it) and for the plain list. */
   const header = (id: string) => (
-    <header className="mb-10 md:mb-12">
+    <header className="mb-5 md:mb-12">
       <SectionTitle id={id}>{meta.label}</SectionTitle>
     </header>
   );

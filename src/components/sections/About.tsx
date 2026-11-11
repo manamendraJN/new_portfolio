@@ -15,22 +15,22 @@ export function About() {
 
   return (
     <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="about-title">
-      <Container grid className="gap-y-12">
+      <Container grid className="gap-y-5 md:gap-y-12">
         <Reveal className="col-span-12 lg:col-span-4">
           <SectionTitle id="about-title">{meta.label}</SectionTitle>
         </Reveal>
 
         <Reveal className="col-span-12 lg:col-span-7 lg:col-start-6">
-          <p className="max-w-[34em] text-[length:clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.4] tracking-[-0.01em] text-balance">
+          <p className="max-w-[34em] text-[length:clamp(1.0625rem,0.95rem+1vw,1.75rem)] leading-[1.4] tracking-[-0.01em] text-balance">
             {lead}
           </p>
-          <div className="mt-10 max-w-[var(--measure)] space-y-6 text-muted">
+          <div className="mt-4 max-w-[var(--measure)] space-y-3 text-muted md:mt-10 md:space-y-6">
             {rest.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
 
-          <Rule className="mt-12" />
+          <Rule className="mt-6 md:mt-12" />
           <ul className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-1">
             {links.map((l) => (
               <li key={l.label}>

@@ -20,7 +20,12 @@ export function Hero() {
       flush
       aria-labelledby="hero-title"
       className="hero-pin"
-      style={{ "--hero-pin-vh": site.hero.pinViewportHeights } as CSSProperties}
+      style={
+        {
+          "--hero-pin-vh": site.hero.pinViewportHeights,
+          "--hero-pin-vh-mobile": site.hero.pinViewportHeightsMobile,
+        } as CSSProperties
+      }
     >
       <FrameSequence>
         <Container className="relative flex h-full flex-col justify-end pt-28 pb-24 md:pb-36">

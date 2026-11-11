@@ -11,8 +11,9 @@ export const site: SiteConfig = {
     "Engineering digital experiences through software, technology, and intelligent solutions.",
   intro: "Engineering digital experiences through software, technology, and intelligent solutions.",
   url: { todo: "domain name" },
-  email: { todo: "email address" },
-  contactTo: { todo: "address the contact form delivers to" },
+  email: "navodyamanamendra19@gmail.com",
+  whatsapp: "0764390987",
+  mobile: "0768685811",
   cvUrl: { todo: "résumé (CV) URL" },
   portrait: { todo: "portrait photo file name, or none" },
   social: [
@@ -62,13 +63,14 @@ export const site: SiteConfig = {
     pad: 4,
     extension: "webp",
     pinViewportHeights: 2.5,
+    pinViewportHeightsMobile: 1,
   },
   heroContent: {
     scrollLabel: "Scroll",
   },
   contactContent: {
     headline: "Get in touch",
-    note: "Use the form, or find me on GitHub and LinkedIn.",
+    note: "Email, message or call, whichever is easiest.",
   },
 };
 
