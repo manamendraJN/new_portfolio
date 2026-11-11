@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { site } from "@/content/site";
 import { drawCover, frameUrl, hasFrames } from "@/lib/frames";
 import { getGsap, MOTION_OK } from "@/lib/gsap";
@@ -10,9 +10,29 @@ type Status = "loading" | "ready" | "fallback";
 
 const LAYERS = [0, 1, 2, 3, 4, 5];
 
+/** Dust drifting up through the lamp light: [left %, size px, rise seconds, delay s, sway px]. */
+const MOTES: [number, number, number, number, number][] = [
+  [6, 3, 22, -3, 18],
+  [12, 2, 17, -11, -14],
+  [19, 4, 26, -7, 22],
+  [26, 2, 19, -15, -10],
+  [33, 3, 24, -1, 16],
+  [41, 2, 20, -9, -18],
+  [48, 3, 28, -19, 12],
+  [55, 2, 18, -5, -12],
+  [62, 4, 25, -13, 20],
+  [69, 2, 21, -17, -16],
+  [76, 3, 23, -8, 14],
+  [84, 2, 19, -21, -20],
+  [91, 3, 27, -4, 10],
+  [15, 2, 21, -23, 12],
+  [37, 3, 18, -25, -14],
+  [73, 2, 26, -2, 18],
+];
+
 /**
  * Darkening laid over the video so the hero text stays readable. Lower = clearer video.
- * Previous values (to restore): phones "bg-bg/35", desktop "md:bg-bg/70".
+ * Original, darker values (to restore): phones "bg-bg/35", desktop "md:bg-bg/70".
  */
 const SCRIM = "bg-bg/15 md:bg-bg/35";
 const PRELOAD_CONCURRENCY = 6;
@@ -218,6 +238,28 @@ export function FrameSequence({ children }: { children: ReactNode }) {
         }}
         className="pointer-events-none absolute inset-x-0 bottom-0 bg-[linear-gradient(to_bottom,transparent,var(--bg)_47vw)] md:hidden"
       />
+      {/* Finish: a soft vignette, fine film grain and a little dust drifting through the light.
+          Decorative, above the video and below the text; static with reduced motion. */}
+      <div aria-hidden="true" className="hero-fx pointer-events-none absolute inset-0">
+        <div className="hero-vignette" />
+        <div className="hero-grain" />
+        {MOTES.map(([left, size, dur, delay, sway], i) => (
+          <span
+            key={i}
+            className="hero-mote"
+            style={
+              {
+                left: `${left}%`,
+                width: size,
+                height: size,
+                animationDuration: `${dur}s`,
+                animationDelay: `${delay}s`,
+                "--sway": `${sway}px`,
+              } as CSSProperties
+            }
+          />
+        ))}
+      </div>
       {/* Fades in over the last frames, handing off to the next section. */}
       <div
         data-hero-dim
