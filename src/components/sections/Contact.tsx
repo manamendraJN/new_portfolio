@@ -1,7 +1,8 @@
-import { NetworkBackdrop, Reveal } from "@/components/motion";
+import { Reveal } from "@/components/motion";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
+import { ContactConnect } from "./ContactConnect";
 import { ContactForm } from "./ContactForm";
 
 /** Contact: one large headline and a minimal form. Charcoal, closing the page. */
@@ -15,16 +16,8 @@ export function Contact() {
   );
 
   return (
-    <Section
-      edge
-      id={meta.id}
-      theme={meta.theme}
-      tone={meta.tone}
-      aria-labelledby="contact-title"
-      className="overflow-hidden"
-    >
-      <NetworkBackdrop />
-      <Container grid className="relative gap-y-12">
+    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="contact-title">
+      <Container grid className="gap-y-12">
         <Reveal className="col-span-12 space-y-8 lg:col-span-6">
           <SectionTitle id="contact-title">{headline}</SectionTitle>
           <p className="max-w-[34ch] text-muted">{note}</p>
@@ -54,6 +47,8 @@ export function Contact() {
               </li>
             ))}
           </ul>
+
+          <ContactConnect />
         </Reveal>
 
         <Reveal className="relative col-span-12 lg:col-span-5 lg:col-start-8">
