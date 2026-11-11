@@ -3,5 +3,5 @@ export { FrameSequence } from "./FrameSequence";
 export { isSlowConnection, useMotion } from "./hooks";
 export { Parallax } from "./Parallax";
 export { Reveal } from "./Reveal";
-export { RingsBackdrop } from "./RingsBackdrop";
+export { NetworkBackdrop } from "./NetworkBackdrop";
 export { ThemeEdge } from "./ThemeEdge";

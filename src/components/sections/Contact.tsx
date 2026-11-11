@@ -1,4 +1,4 @@
-import { Reveal, RingsBackdrop } from "@/components/motion";
+import { NetworkBackdrop, Reveal } from "@/components/motion";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
@@ -23,7 +23,7 @@ export function Contact() {
       aria-labelledby="contact-title"
       className="overflow-hidden"
     >
-      <RingsBackdrop />
+      <NetworkBackdrop />
       <Container grid className="relative gap-y-12">
         <Reveal className="col-span-12 space-y-8 lg:col-span-6">
           <SectionTitle id="contact-title">{headline}</SectionTitle>
