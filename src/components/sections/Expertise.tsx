@@ -20,7 +20,7 @@ export function Expertise() {
       aria-labelledby="expertise-title"
       className="py-[calc(var(--section-y)*0.7)]!"
     >
-      <Container grid className="gap-y-6 md:gap-y-10">
+      <Container grid className="gap-y-8 md:gap-y-10">
         <Reveal as="header" className="col-span-12 lg:col-span-4">
           <SectionTitle id="expertise-title">{meta.label}</SectionTitle>
         </Reveal>
@@ -30,7 +30,7 @@ export function Expertise() {
           {skills.map((group) => (
             <div
               key={group.id}
-              className="mb-4 break-inside-avoid space-y-1 md:mb-6 md:space-y-1.5"
+              className="mb-6 break-inside-avoid space-y-1.5 md:mb-6 md:space-y-1.5"
             >
               <dt className="text-sm font-medium md:text-base">{group.label}</dt>
               <dd>

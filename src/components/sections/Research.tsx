@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
-import { Container, Heading, Label, Rule, Section, SectionTitle } from "@/components/ui";
+import { Container, Heading, Label, Section, SectionTitle } from "@/components/ui";
 import { research } from "@/content/research";
 import { site } from "@/content/site";
 
@@ -38,34 +38,26 @@ export function Research() {
   ];
 
   return (
-    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
+    <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
       <Container>
-        <Reveal as="header" className="mb-6 md:mb-20">
+        <Reveal as="header" className="mb-8 md:mb-10">
           <SectionTitle id="research-title">{meta.label}</SectionTitle>
         </Reveal>
 
         {/* The plate */}
-        <Reveal as="article" aria-labelledby="publication-title" className="border border-line">
-          <div className="space-y-3 p-4 md:space-y-6 md:p-10 lg:p-14">
-            <p className="flex flex-wrap gap-x-5 gap-y-1">
-              <Label accent>Published paper</Label>
-              <Label>
-                {r.conferenceDate} &middot; {r.venueLocation}
-              </Label>
-            </p>
+        <Reveal as="article" aria-labelledby="publication-title">
+          <div className="space-y-4 md:space-y-5">
             <Heading level={3} variant="project" id="publication-title" className="max-w-[26em]">
               {r.title}
             </Heading>
             <p className="max-w-[var(--measure)] text-muted italic">{r.venue}</p>
           </div>
 
-          <Rule />
-
-          <dl className="grid grid-cols-2">
-            {facts.map((f, i) => (
+          <dl className="mt-5 grid grid-cols-2 gap-x-6 md:mt-6 md:flex md:flex-wrap md:gap-x-14">
+            {facts.map((f) => (
               <div
                 key={f.term}
-                className={`flex min-w-0 flex-col gap-0.5 border-t border-[var(--line)] px-4 py-3 md:gap-1 md:p-6 md:px-10 lg:px-14 ${i % 2 === 0 ? "border-r" : ""}`}
+                className={`flex min-w-0 flex-col gap-0.5 py-2.5 md:gap-1 md:py-3 ${f.term === "DOI" || f.term === "Supervisor" ? "col-span-2 md:col-span-1" : ""}`}
               >
                 <dt>
                   <Label>{f.term}</Label>
@@ -75,10 +67,8 @@ export function Research() {
             ))}
           </dl>
 
-          <Rule />
-
           {/* My contribution vs. the wider group project */}
-          <div className="grid gap-y-5 p-4 md:grid-cols-12 md:gap-x-10 md:gap-y-10 md:p-10 lg:p-14">
+          <div className="mt-5 grid gap-y-5 md:mt-8 md:grid-cols-12 md:gap-x-10 md:gap-y-8">
             <section
               aria-labelledby="my-contribution"
               className="space-y-2 md:col-span-7 md:space-y-4"

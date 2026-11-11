@@ -55,22 +55,22 @@ export function Contact() {
       theme={meta.theme}
       tone={meta.tone}
       aria-labelledby="contact-title"
-      className="rounded-t-[1.75rem] border-t border-accent/60 pt-8! pb-6! md:rounded-t-[2.5rem] md:pt-[var(--section-y)]!"
+      className="rounded-t-[1.75rem] pt-8! pb-6! md:rounded-t-[2.5rem] md:pt-[var(--section-y)]!"
     >
-      <Container grid className="gap-y-6 md:gap-y-12">
-        <Reveal className="col-span-12 space-y-3 md:space-y-6 lg:col-span-5">
+      <Container grid className="gap-y-8 md:gap-y-8">
+        <Reveal className="col-span-12 space-y-4 md:space-y-6 lg:col-span-5">
           <SectionTitle id="contact-title">{headline}</SectionTitle>
           <p className="max-w-[30ch] text-sm text-muted md:text-base">{note}</p>
         </Reveal>
 
         <Reveal className="col-span-12 lg:col-span-7">
-          <ul className="border-b border-line">
+          <ul>
             {channels.map(({ id, label, Icon, value, href, copy, external }) => (
-              <li key={id} className="flex items-center gap-3 border-t border-line">
+              <li key={id} className="flex items-center gap-3">
                 <a
                   href={href}
                   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="group flex min-w-0 flex-1 items-center gap-3 py-2.5 sm:gap-5 md:py-5"
+                  className="group flex min-w-0 flex-1 items-center gap-3 py-3.5 sm:gap-5 md:py-5"
                 >
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-line text-accent transition-colors group-hover:border-accent md:size-12">
                     <Icon aria-hidden="true" size={20} />
@@ -100,7 +100,7 @@ export function Contact() {
             ))}
           </ul>
 
-          <ul className="mt-3 flex flex-wrap items-center gap-x-8 gap-y-1 md:mt-6">
+          <ul className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-1 md:mt-6">
             {links.map((l) => (
               <li key={l.label}>
                 <a

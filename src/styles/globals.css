@@ -117,3 +117,37 @@ html:has(dialog[open]) {
     min-height: calc(100svh * (1 + var(--hero-pin-vh-mobile, 1)));
   }
 }
+
+/* Every section except the hero (which has the video): two soft gold glows drifting slowly
+   behind the content. Very low opacity so text stays readable; static for reduced motion. */
+.section-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 30rem at 30% 30%, color-mix(in srgb, var(--accent) var(--glow-a, 14%), transparent), transparent),
+    radial-gradient(circle 26rem at 70% 70%, color-mix(in srgb, var(--accent) var(--glow-b, 11%), transparent), transparent);
+  background-size: 140% 140%;
+  background-repeat: no-repeat;
+  background-position: 0% 0%, 100% 100%;
+  /* Fade out at the top and bottom so there is no hard line where sections meet. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+}
+/* Light sections need more to read at all. */
+.section-glow[data-theme="light"] {
+  --glow-a: 16%;
+  --glow-b: 12%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .section-glow::before {
+    animation: section-drift 28s ease-in-out infinite alternate;
+  }
+}
+@keyframes section-drift {
+  to {
+    background-position: 100% 50%, 0% 40%;
+  }
+}

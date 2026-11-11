@@ -1,4 +1,4 @@
-import { Container, Heading, Label, Rule, Section, SectionTitle } from "@/components/ui";
+import { Container, Heading, Label, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { getCover, getPublishedProjects } from "@/lib/content";
 import { ProjectLinks } from "./ProjectLinks";
@@ -18,7 +18,7 @@ export function Projects() {
 
   /** The same heading for the carousel (pinned with it) and for the plain list. */
   const header = (id: string) => (
-    <header className="mb-5 md:mb-12">
+    <header className="mb-5 md:mb-8">
       <SectionTitle id={id}>{meta.label}</SectionTitle>
     </header>
   );
@@ -40,7 +40,6 @@ export function Projects() {
               const cover = getCover(p);
               return (
                 <li key={p.slug}>
-                  <Rule />
                   <article
                     aria-labelledby={`project-list-${p.slug}`}
                     className="grid grid-cols-12 gap-x-6 gap-y-6 py-10"

@@ -16,7 +16,7 @@ export function Experience() {
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
       <Container>
-        <Reveal as="header" className="mb-6 md:mb-16">
+        <Reveal as="header" className="mb-8 md:mb-10">
           <SectionTitle id="experience-title">{meta.label}</SectionTitle>
         </Reveal>
 
@@ -38,7 +38,7 @@ export function Experience() {
                 <Reveal
                   as="article"
                   aria-labelledby={`exp-${e.id}`}
-                  className={`space-y-2 md:space-y-3 ${last ? "pb-0" : "pb-8 md:pb-14"}`}
+                  className={`space-y-2.5 md:space-y-3 ${last ? "pb-0" : "pb-9 md:pb-9"}`}
                 >
                   <p>
                     <Label as="span" accent>

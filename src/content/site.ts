@@ -35,10 +35,10 @@ export const site: SiteConfig = {
   sections: [
     { id: "hero", number: "00", label: "Introduction", theme: "dark" },
     { id: "about", number: "01", label: "About", theme: "light", tone: "base" },
-    { id: "expertise", number: "02", label: "Expertise", theme: "light", tone: "surface" },
+    { id: "expertise", number: "02", label: "Expertise", theme: "light", tone: "base" },
     { id: "projects", number: "03", label: "Projects", theme: "light", tone: "base" },
-    { id: "experience", number: "04", label: "Experience", theme: "light", tone: "surface" },
-    { id: "research", number: "05", label: "Research", theme: "dark", tone: "surface" },
+    { id: "experience", number: "04", label: "Experience", theme: "light", tone: "base" },
+    { id: "research", number: "05", label: "Research", theme: "light", tone: "base" },
     { id: "education", number: "06", label: "Education", theme: "light", tone: "base" },
     { id: "contact", number: "07", label: "Contact", theme: "dark", tone: "base" },
   ],

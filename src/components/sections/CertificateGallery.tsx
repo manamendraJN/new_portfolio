@@ -13,7 +13,7 @@ export function CertificateGallery({ items }: { items: Certificate[] }) {
       {items.map((c) => (
         <li
           key={c.id}
-          className="flex items-center justify-between gap-2 border-t border-line py-2 sm:gap-4 sm:py-3"
+          className="flex items-center justify-between gap-2 py-3 sm:gap-4 sm:py-3"
         >
           <div className="flex min-w-0 items-center gap-3">
             {c.imageUrl && <CertificateImage src={c.imageUrl} title={c.title} issuer={c.issuer} />}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { Container, Heading, Label, Rule, Section } from "@/components/ui";
+import { Container, Heading, Label, Section } from "@/components/ui";
 import { ProjectLinks } from "@/components/sections/ProjectLinks";
 import { ProjectVisual } from "@/components/sections/ProjectVisual";
 import { site } from "@/content/site";
@@ -44,7 +44,6 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
         </h2>
         <div className="col-span-12 md:col-span-8">{children}</div>
       </div>
-      <Rule />
     </>
   );
 }
@@ -117,7 +116,6 @@ export default async function ProjectPage({ params }: PageProps) {
           )}
 
           <div>
-            <Rule />
             {project.features && project.features.length > 0 && (
               <Block title="Features">
                 <ul className="grid max-w-[var(--measure)] gap-x-8 gap-y-2 sm:grid-cols-2">

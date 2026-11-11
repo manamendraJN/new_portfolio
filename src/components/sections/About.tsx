@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion";
-import { Button, Container, Rule, Section, SectionTitle } from "@/components/ui";
+import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { about, site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
 
@@ -14,8 +14,15 @@ export function About() {
   );
 
   return (
-    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="about-title">
-      <Container grid className="gap-y-5 md:gap-y-12">
+    <Section
+      edge
+      id={meta.id}
+      theme={meta.theme}
+      tone={meta.tone}
+      aria-labelledby="about-title"
+      className="pt-[calc(var(--section-y)*1.7)]!"
+    >
+      <Container grid className="gap-y-7 md:gap-y-8">
         <Reveal className="col-span-12 lg:col-span-4">
           <SectionTitle id="about-title">{meta.label}</SectionTitle>
         </Reveal>
@@ -30,7 +37,6 @@ export function About() {
             ))}
           </div>
 
-          <Rule className="mt-6 md:mt-12" />
           <ul className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-1">
             {links.map((l) => (
               <li key={l.label}>

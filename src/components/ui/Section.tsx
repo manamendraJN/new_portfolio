@@ -35,8 +35,10 @@ export function Section({
     <section
       id={id}
       data-theme={theme}
+      data-tone={tone}
       className={cn(
         "relative text-fg",
+        !flush && "section-glow isolate",
         tone === "surface" ? "bg-surface" : "bg-bg",
         !flush && "py-[var(--section-y)]",
         className,
