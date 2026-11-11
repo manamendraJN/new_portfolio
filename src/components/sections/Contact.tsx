@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/motion";
+import { Reveal, RingsBackdrop } from "@/components/motion";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { site } from "@/content/site";
 import { isTodo } from "@/lib/utils";
@@ -15,8 +15,16 @@ export function Contact() {
   );
 
   return (
-    <Section edge id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="contact-title">
-      <Container grid className="gap-y-12">
+    <Section
+      edge
+      id={meta.id}
+      theme={meta.theme}
+      tone={meta.tone}
+      aria-labelledby="contact-title"
+      className="overflow-hidden"
+    >
+      <RingsBackdrop />
+      <Container grid className="relative gap-y-12">
         <Reveal className="col-span-12 space-y-8 lg:col-span-6">
           <SectionTitle id="contact-title">{headline}</SectionTitle>
           <p className="max-w-[34ch] text-muted">{note}</p>
