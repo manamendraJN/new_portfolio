@@ -218,10 +218,12 @@ export function FrameSequence({ children }: { children: ReactNode }) {
   return (
     <div ref={stageRef} className="relative h-svh overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0">
-        {status !== "ready" && <FallbackComposition />}
+        {/* Only when there is no video at all. While the first frame loads, show nothing (plain dark),
+            so the placeholder rectangles never flash. */}
+        {status === "fallback" && <FallbackComposition />}
         <canvas
           ref={canvasRef}
-          className={`absolute inset-0 h-full w-full ${status === "ready" ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${status === "ready" ? "opacity-100" : "opacity-0"}`}
         />
         {/* Flat scrim keeps text readable over any frame. Not a gradient. */}
         {status === "ready" && <div className={`absolute inset-0 ${SCRIM}`} />}
