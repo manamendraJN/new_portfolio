@@ -74,7 +74,7 @@ export function TimelineLine({ children }: { children: ReactNode }) {
   });
 
   return (
-    <ol ref={listRef} className="relative ml-1.5 md:ml-2">
+    <ol ref={listRef} className="relative">
       <span
         ref={trackRef}
         aria-hidden="true"

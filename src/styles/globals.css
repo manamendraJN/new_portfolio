@@ -118,36 +118,68 @@ html:has(dialog[open]) {
   }
 }
 
-/* Every section except the hero (which has the video): two soft gold glows drifting slowly
-   behind the content. Very low opacity so text stays readable; static for reduced motion. */
-.section-glow::before {
+/* Every section except the hero (which has the video): a slow aurora behind the content.
+   Two layers of soft colour (gold, warm copper, a cool blue) drift against each other, so the
+   light keeps changing. Faint enough that text stays readable; static for reduced motion. */
+.section-glow {
+  --glow-gold: 16%;
+  --glow-copper: 12%;
+  --glow-blue: 9%;
+}
+.section-glow[data-theme="light"] {
+  --glow-gold: 20%;
+  --glow-copper: 14%;
+  --glow-blue: 11%;
+}
+.section-glow::before,
+.section-glow::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(circle 30rem at 30% 30%, color-mix(in srgb, var(--accent) var(--glow-a, 14%), transparent), transparent),
-    radial-gradient(circle 26rem at 70% 70%, color-mix(in srgb, var(--accent) var(--glow-b, 11%), transparent), transparent);
-  background-size: 140% 140%;
   background-repeat: no-repeat;
-  background-position: 0% 0%, 100% 100%;
   /* Fade out at the top and bottom so there is no hard line where sections meet. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
 }
-/* Light sections need more to read at all. */
-.section-glow[data-theme="light"] {
-  --glow-a: 16%;
-  --glow-b: 12%;
+.section-glow::before {
+  background-image:
+    radial-gradient(circle 32rem at 25% 35%, color-mix(in srgb, var(--accent) var(--glow-gold), transparent), transparent),
+    radial-gradient(circle 24rem at 80% 25%, color-mix(in srgb, var(--link) var(--glow-blue), transparent), transparent);
+  background-size: 150% 150%, 130% 130%;
+  background-position: 0% 0%, 100% 0%;
+}
+.section-glow::after {
+  background-image:
+    radial-gradient(circle 28rem at 70% 75%, color-mix(in srgb, #c9784a var(--glow-copper), transparent), transparent),
+    radial-gradient(circle 20rem at 15% 80%, color-mix(in srgb, var(--accent) var(--glow-gold), transparent), transparent);
+  background-size: 140% 140%, 160% 160%;
+  background-position: 100% 100%, 0% 100%;
 }
 @media (prefers-reduced-motion: no-preference) {
   .section-glow::before {
-    animation: section-drift 28s ease-in-out infinite alternate;
+    animation: glow-drift-a 22s ease-in-out infinite alternate;
+  }
+  .section-glow::after {
+    animation: glow-drift-b 30s ease-in-out infinite alternate;
   }
 }
-@keyframes section-drift {
-  to {
-    background-position: 100% 50%, 0% 40%;
+@keyframes glow-drift-a {
+  50% {
+    background-position: 70% 60%, 30% 70%;
+    background-size: 170% 170%, 150% 150%;
+  }
+  100% {
+    background-position: 100% 30%, 0% 20%;
+  }
+}
+@keyframes glow-drift-b {
+  50% {
+    background-position: 30% 20%, 80% 40%;
+    background-size: 160% 160%, 140% 140%;
+  }
+  100% {
+    background-position: 0% 60%, 100% 90%;
   }
 }

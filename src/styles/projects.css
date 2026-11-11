@@ -103,3 +103,83 @@
   transform: translateY(10px);
   pointer-events: none;
 }
+
+/* ---- Quick index of all projects ------------------------------------------------- */
+.pj-index-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.25rem 0;
+  text-align: left;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.pj-index-item:hover {
+  color: var(--fg);
+}
+.pj-index-item[aria-current="true"] {
+  color: var(--fg);
+  font-weight: 500;
+}
+.pj-index-num {
+  flex: none;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.pj-index-item[aria-current="true"] .pj-index-num {
+  color: var(--accent-text);
+}
+/* Wide screens: a list beside the carousel (absolutely placed, so the block height is unchanged). */
+.pj-index-side {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .pj-index-side {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 58%;
+    transform: translateY(calc(-50% - 2.25rem));
+    width: 15rem;
+  }
+}
+/* Smaller screens: compact chips under the counter, only where the block is not pinned. */
+.pj-index-chips {
+  display: none;
+}
+@media (max-width: 767px) {
+  .pj-index-chips {
+    display: flex;
+  }
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  [data-pin="off"] .pj-index-chips {
+    display: flex;
+  }
+}
+.pj-index-chips {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1rem;
+  margin-top: 1rem;
+}
+.pj-index-chips .pj-index-item {
+  width: auto;
+  min-height: 2.5rem;
+  font-size: 0.8125rem;
+}
+.pj-index-chips .pj-index-num {
+  display: none;
+}
+.pj-index-chips .pj-index-item[aria-current="true"] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+}

@@ -26,7 +26,11 @@ export function Expertise() {
         </Reveal>
 
         {/* Groups flow down each column and pack by height, so there are no gaps or orphans. */}
-        <Reveal as="dl" stagger className="col-span-12 columns-2 gap-x-5 sm:gap-x-12 lg:col-span-8">
+        <Reveal
+          as="dl"
+          stagger
+          className="col-span-12 columns-2 gap-x-5 sm:gap-x-12 lg:col-span-8 lg:pt-16"
+        >
           {skills.map((group) => (
             <div
               key={group.id}

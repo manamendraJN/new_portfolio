@@ -27,7 +27,7 @@ export function About() {
           <SectionTitle id="about-title">{meta.label}</SectionTitle>
         </Reveal>
 
-        <Reveal className="col-span-12 lg:col-span-7 lg:col-start-6">
+        <Reveal className="col-span-12 lg:col-span-8 lg:col-start-5 lg:pt-16">
           <p className="max-w-[34em] text-[length:clamp(1.0625rem,0.95rem+1vw,1.75rem)] leading-[1.4] tracking-[-0.01em] text-balance">
             {lead}
           </p>

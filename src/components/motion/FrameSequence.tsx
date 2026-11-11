@@ -9,6 +9,12 @@ import { isSlowConnection } from "./hooks";
 type Status = "loading" | "ready" | "fallback";
 
 const LAYERS = [0, 1, 2, 3, 4, 5];
+
+/**
+ * Darkening laid over the video so the hero text stays readable. Lower = clearer video.
+ * Previous values (to restore): phones "bg-bg/35", desktop "md:bg-bg/70".
+ */
+const SCRIM = "bg-bg/15 md:bg-bg/35";
 const PRELOAD_CONCURRENCY = 6;
 
 /** Static fallback: receding frames drawn with hairlines and CSS perspective only. */
@@ -198,7 +204,7 @@ export function FrameSequence({ children }: { children: ReactNode }) {
           className={`absolute inset-0 h-full w-full ${status === "ready" ? "opacity-100" : "opacity-0"}`}
         />
         {/* Flat scrim keeps text readable over any frame. Not a gradient. */}
-        {status === "ready" && <div className="absolute inset-0 bg-bg/35 md:bg-bg/70" />}
+        {status === "ready" && <div className={`absolute inset-0 ${SCRIM}`} />}
       </div>
       {/* Phones: a dark panel across the bottom holds the text. Its top edge fades out over the
           video instead of ending in a straight line. */}

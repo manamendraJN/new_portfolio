@@ -15,78 +15,80 @@ export function Experience() {
 
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="experience-title">
-      <Container>
-        <Reveal as="header" className="mb-8 md:mb-10">
+      <Container grid className="gap-y-8 md:gap-y-10">
+        <Reveal as="header" className="col-span-12 lg:col-span-4">
           <SectionTitle id="experience-title">{meta.label}</SectionTitle>
         </Reveal>
 
-        <TimelineLine>
-          {entries.map((e, i) => {
-            const current = text(e.end).toLowerCase() === "present";
-            const last = i === entries.length - 1;
-            return (
-              <li key={e.id} className="relative pl-7 md:pl-14">
-                {/* Node */}
-                <span
-                  aria-hidden="true"
-                  data-node
-                  className={`absolute top-[0.35rem] left-0 size-3 -translate-x-1/2 rounded-full border border-accent md:top-[0.55rem] md:size-3.5 ${
-                    current ? "bg-accent" : "bg-bg data-[active=true]:bg-accent"
-                  }`}
-                />
+        <div className="col-span-12 lg:col-span-8 lg:pt-16">
+          <TimelineLine>
+            {entries.map((e, i) => {
+              const current = text(e.end).toLowerCase() === "present";
+              const last = i === entries.length - 1;
+              return (
+                <li key={e.id} className="relative pl-7 md:pl-14">
+                  {/* Node */}
+                  <span
+                    aria-hidden="true"
+                    data-node
+                    className={`absolute top-[0.35rem] left-0 size-3 -translate-x-1/2 rounded-full border border-accent md:top-[0.55rem] md:size-3.5 ${
+                      current ? "bg-accent" : "bg-bg data-[active=true]:bg-accent"
+                    }`}
+                  />
 
-                <Reveal
-                  as="article"
-                  aria-labelledby={`exp-${e.id}`}
-                  className={`space-y-2.5 md:space-y-3 ${last ? "pb-0" : "pb-9 md:pb-9"}`}
-                >
-                  <p>
-                    <Label as="span" accent>
-                      {text(e.start)} &ndash; {text(e.end)}
-                    </Label>
-                  </p>
+                  <Reveal
+                    as="article"
+                    aria-labelledby={`exp-${e.id}`}
+                    className={`space-y-2.5 md:space-y-3 ${last ? "pb-0" : "pb-9 md:pb-9"}`}
+                  >
+                    <p>
+                      <Label as="span" accent>
+                        {text(e.start)} &ndash; {text(e.end)}
+                      </Label>
+                    </p>
 
-                  <div className="space-y-1">
-                    <Heading level={3} variant="title" id={`exp-${e.id}`}>
-                      {text(e.role)}
-                    </Heading>
-                    <p>{text(e.org)}</p>
-                  </div>
+                    <div className="space-y-1">
+                      <Heading level={3} variant="title" id={`exp-${e.id}`}>
+                        {text(e.role)}
+                      </Heading>
+                      <p>{text(e.org)}</p>
+                    </div>
 
-                  {(e.employment || e.location || e.domain === "broadcast-operations") && (
-                    <ul className="flex flex-wrap gap-x-5 gap-y-1">
-                      {e.domain === "broadcast-operations" && (
-                        <li>
-                          <Label>Broadcast operations</Label>
-                        </li>
-                      )}
-                      {e.employment && (
-                        <li>
-                          <Label>{e.employment}</Label>
-                        </li>
-                      )}
-                      {e.location && (
-                        <li>
-                          <Label>{e.location}</Label>
-                        </li>
-                      )}
-                    </ul>
-                  )}
+                    {(e.employment || e.location || e.domain === "broadcast-operations") && (
+                      <ul className="flex flex-wrap gap-x-5 gap-y-1">
+                        {e.domain === "broadcast-operations" && (
+                          <li>
+                            <Label>Broadcast operations</Label>
+                          </li>
+                        )}
+                        {e.employment && (
+                          <li>
+                            <Label>{e.employment}</Label>
+                          </li>
+                        )}
+                        {e.location && (
+                          <li>
+                            <Label>{e.location}</Label>
+                          </li>
+                        )}
+                      </ul>
+                    )}
 
-                  <p className="max-w-[var(--measure)] text-muted">{text(e.summary)}</p>
+                    <p className="max-w-[var(--measure)] text-muted">{text(e.summary)}</p>
 
-                  {e.points && e.points.length > 0 && (
-                    <ul className="max-w-[var(--measure)] list-disc space-y-1 pl-5 text-muted">
-                      {e.points.map((pt, j) => (
-                        <li key={j}>{text(pt)}</li>
-                      ))}
-                    </ul>
-                  )}
-                </Reveal>
-              </li>
-            );
-          })}
-        </TimelineLine>
+                    {e.points && e.points.length > 0 && (
+                      <ul className="max-w-[var(--measure)] list-disc space-y-1 pl-5 text-muted">
+                        {e.points.map((pt, j) => (
+                          <li key={j}>{text(pt)}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </Reveal>
+                </li>
+              );
+            })}
+          </TimelineLine>
+        </div>
       </Container>
     </Section>
   );

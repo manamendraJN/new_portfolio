@@ -344,7 +344,7 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
       className="projects-carousel projects-pin"
       style={{ "--projects-n": n } as CSSProperties}
     >
-      <div ref={blockRef}>
+      <div ref={blockRef} className="relative">
         {header}
         <div
           role="group"
@@ -434,6 +434,43 @@ export function ProjectsCarousel({ projects, header }: ProjectsCarouselProps) {
             </div>
           </div>
         </div>
+
+        {/* Quick index: every project by name; picking one turns the carousel to it. */}
+        <nav aria-label="All projects" className="pj-index pj-index-side">
+          <Label as="p" accent>
+            All projects
+          </Label>
+          <ol className="mt-3 space-y-1">
+            {projects.map((p, i) => (
+              <li key={p.slug}>
+                <button
+                  type="button"
+                  aria-current={i === active ? "true" : undefined}
+                  onClick={() => api.current.moveTo(i)}
+                  className="pj-index-item"
+                >
+                  <span className="pj-index-num">{pad(i + 1)}</span>
+                  <span>{p.title}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        <nav aria-label="All projects" className="pj-index-chips">
+          {projects.map((p, i) => (
+            <button
+              key={p.slug}
+              type="button"
+              aria-current={i === active ? "true" : undefined}
+              onClick={() => api.current.moveTo(i)}
+              className="pj-index-item"
+            >
+              <span className="pj-index-num">{pad(i + 1)}</span>
+              <span>{p.title}</span>
+            </button>
+          ))}
+        </nav>
       </div>
 
       <p className="sr-only" aria-live="polite" aria-atomic="true">

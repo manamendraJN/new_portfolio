@@ -58,12 +58,12 @@ export function Contact() {
       className="rounded-t-[1.75rem] pt-8! pb-6! md:rounded-t-[2.5rem] md:pt-[var(--section-y)]!"
     >
       <Container grid className="gap-y-8 md:gap-y-8">
-        <Reveal className="col-span-12 space-y-4 md:space-y-6 lg:col-span-5">
+        <Reveal className="col-span-12 space-y-4 md:space-y-6 lg:col-span-4">
           <SectionTitle id="contact-title">{headline}</SectionTitle>
           <p className="max-w-[30ch] text-sm text-muted md:text-base">{note}</p>
         </Reveal>
 
-        <Reveal className="col-span-12 lg:col-span-7">
+        <Reveal className="col-span-12 lg:col-span-8 lg:col-start-5 lg:pt-16">
           <ul>
             {channels.map(({ id, label, Icon, value, href, copy, external }) => (
               <li key={id} className="flex items-center gap-3">

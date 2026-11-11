@@ -39,13 +39,17 @@ export function Research() {
 
   return (
     <Section id={meta.id} theme={meta.theme} tone={meta.tone} aria-labelledby="research-title">
-      <Container>
-        <Reveal as="header" className="mb-8 md:mb-10">
+      <Container grid className="gap-y-8 md:gap-y-10">
+        <Reveal as="header" className="col-span-12 lg:col-span-4">
           <SectionTitle id="research-title">{meta.label}</SectionTitle>
         </Reveal>
 
         {/* The plate */}
-        <Reveal as="article" aria-labelledby="publication-title">
+        <Reveal
+          as="article"
+          aria-labelledby="publication-title"
+          className="col-span-12 lg:col-span-8 lg:pt-16"
+        >
           <div className="space-y-4 md:space-y-5">
             <Heading level={3} variant="project" id="publication-title" className="max-w-[26em]">
               {r.title}
@@ -68,10 +72,10 @@ export function Research() {
           </dl>
 
           {/* My contribution vs. the wider group project */}
-          <div className="mt-5 grid gap-y-5 md:mt-8 md:grid-cols-12 md:gap-x-10 md:gap-y-8">
+          <div className="mt-5 grid gap-y-5 md:mt-8 md:grid-cols-5 md:gap-x-10 md:gap-y-8">
             <section
               aria-labelledby="my-contribution"
-              className="space-y-2 md:col-span-7 md:space-y-4"
+              className="space-y-2 md:col-span-3 md:space-y-4"
             >
               <Label accent as="p">
                 My contribution
@@ -82,10 +86,7 @@ export function Research() {
               <p className="max-w-[var(--measure)] text-muted">{r.contribution.summary}</p>
             </section>
 
-            <section
-              aria-labelledby="group-work"
-              className="space-y-2 md:col-span-4 md:col-start-9 md:space-y-4"
-            >
+            <section aria-labelledby="group-work" className="space-y-2 md:col-span-2 md:space-y-4">
               <h4 id="group-work" className="leading-4">
                 <Label accent>Other members&rsquo; contributions</Label>
               </h4>
