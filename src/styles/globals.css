@@ -118,68 +118,29 @@ html:has(dialog[open]) {
   }
 }
 
-/* Every section except the hero (which has the video): a slow aurora behind the content.
-   Two layers of soft colour (gold, warm copper, a cool blue) drift against each other, so the
-   light keeps changing. Faint enough that text stays readable; static for reduced motion. */
-.section-glow {
-  --glow-gold: 16%;
-  --glow-copper: 12%;
-  --glow-blue: 9%;
-}
-.section-glow[data-theme="light"] {
-  --glow-gold: 20%;
-  --glow-copper: 14%;
-  --glow-blue: 11%;
-}
-.section-glow::before,
-.section-glow::after {
+/* Old plaster wall: a still texture behind every section but the hero. Fine grit, soft
+   mottled stains and a few tonal patches, tinted to the theme (bronze on ivory, gold on
+   charcoal). No animation; kept faint so text stays crisp. */
+.wall::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-repeat: no-repeat;
-  /* Fade out at the top and bottom so there is no hard line where sections meet. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  background-repeat: repeat;
+  background-image: var(--wall-grit), var(--wall-stain), var(--wall-patch);
+  background-size: 240px 240px, 900px 900px, 1400px 1400px;
+  /* Fade to the plain colour at the top and bottom, so two sections meet with no visible edge. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7rem, #000 calc(100% - 7rem), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 7rem, #000 calc(100% - 7rem), transparent);
 }
-.section-glow::before {
-  background-image:
-    radial-gradient(circle 32rem at 25% 35%, color-mix(in srgb, var(--accent) var(--glow-gold), transparent), transparent),
-    radial-gradient(circle 24rem at 80% 25%, color-mix(in srgb, var(--link) var(--glow-blue), transparent), transparent);
-  background-size: 150% 150%, 130% 130%;
-  background-position: 0% 0%, 100% 0%;
+.wall[data-theme="light"] {
+  --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0 0.2 0 0 0 0.4 -0.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-stain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .011' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.25 0 0 0 0.5 -0.17'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-patch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0035 .0045' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.36 0 0 0 0 0.22 0 0 0 0.45 -0.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.section-glow::after {
-  background-image:
-    radial-gradient(circle 28rem at 70% 75%, color-mix(in srgb, #c9784a var(--glow-copper), transparent), transparent),
-    radial-gradient(circle 20rem at 15% 80%, color-mix(in srgb, var(--accent) var(--glow-gold), transparent), transparent);
-  background-size: 140% 140%, 160% 160%;
-  background-position: 100% 100%, 0% 100%;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .section-glow::before {
-    animation: glow-drift-a 22s ease-in-out infinite alternate;
-  }
-  .section-glow::after {
-    animation: glow-drift-b 30s ease-in-out infinite alternate;
-  }
-}
-@keyframes glow-drift-a {
-  50% {
-    background-position: 70% 60%, 30% 70%;
-    background-size: 170% 170%, 150% 150%;
-  }
-  100% {
-    background-position: 100% 30%, 0% 20%;
-  }
-}
-@keyframes glow-drift-b {
-  50% {
-    background-position: 30% 20%, 80% 40%;
-    background-size: 160% 160%, 140% 140%;
-  }
-  100% {
-    background-position: 0% 60%, 100% 90%;
-  }
+.wall[data-theme="dark"] {
+  --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0 0.6 0 0 0 0.3 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-stain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .011' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.79 0 0 0 0 0.7 0 0 0 0 0.49 0 0 0 0.3 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-patch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0035 .0045' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.5 0 0 0 0 0.32 0 0 0 0.25 -0.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
