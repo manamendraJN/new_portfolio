@@ -93,9 +93,8 @@ export function Research() {
               aria-labelledby="group-work"
               className="space-y-4 md:col-span-4 md:col-start-9"
             >
-              <Label as="p">Wider group project</Label>
               <Heading level={4} variant="title" id="group-work">
-                Not my individual work
+                Other members&rsquo; contributions
               </Heading>
               <ul className="space-y-1 text-muted">
                 {r.groupWork.map((g) => (
