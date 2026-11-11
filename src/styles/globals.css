@@ -118,31 +118,29 @@ html:has(dialog[open]) {
   }
 }
 
-/* Old plaster wall: a still texture behind every section but the hero. Fine grit, soft
-   mottled stains and a few tonal patches, tinted to the theme (bronze on ivory, gold on
-   charcoal). No animation; kept faint so text stays crisp. */
+/* Old plaster wall: a still, pre-rendered texture (a small tiled image, cheap to paint) behind
+   every section but the hero. The top and bottom edges fade to the plain colour with ordinary
+   gradients, so neighbouring sections meet with no visible edge. */
 .wall::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-repeat: repeat;
-  background-image: var(--wall-grit), var(--wall-stain), var(--wall-patch);
-  background-size: 240px 240px, 900px 900px, 1400px 1400px;
-  /* Fade to the plain colour at the top and bottom, so two sections meet with no visible edge. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7rem, #000 calc(100% - 7rem), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 7rem, #000 calc(100% - 7rem), transparent);
+  background-image:
+    linear-gradient(to bottom, var(--bg), transparent 7rem),
+    linear-gradient(to top, var(--bg), transparent 7rem), var(--wall-img);
+  background-size:
+    100% 100%,
+    100% 100%,
+    1200px 1200px;
+  background-repeat: no-repeat, no-repeat, repeat;
 }
 .wall[data-theme="light"] {
-  --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0 0.2 0 0 0 0.26 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --wall-stain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .011' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.25 0 0 0 0.32 -0.11'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --wall-patch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0035 .0045' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.36 0 0 0 0 0.22 0 0 0 0.28 -0.095'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-img: url("/textures/wall-light.webp");
 }
 .wall[data-theme="dark"] {
-  --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0 0.6 0 0 0 0.3 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --wall-stain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .011' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.79 0 0 0 0 0.7 0 0 0 0 0.49 0 0 0 0.3 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --wall-patch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0035 .0045' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.5 0 0 0 0 0.32 0 0 0 0.25 -0.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --wall-img: url("/textures/wall-dark.webp");
 }
 
 /* Hero finish: vignette, film grain and drifting dust over the video. */
