@@ -93,12 +93,14 @@ export function Research() {
               aria-labelledby="group-work"
               className="space-y-4 md:col-span-4 md:col-start-9"
             >
-              <Heading level={4} variant="title" id="group-work">
-                Other members&rsquo; contributions
-              </Heading>
-              <ul className="space-y-1 text-muted">
+              <h4 id="group-work" className="leading-4">
+                <Label accent>Other members&rsquo; contributions</Label>
+              </h4>
+              <ul className="space-y-2">
                 {r.groupWork.map((g) => (
-                  <li key={g}>{g}</li>
+                  <li key={g} className="text-[length:var(--text-title)] leading-snug font-medium">
+                    {g}
+                  </li>
                 ))}
               </ul>
             </section>
