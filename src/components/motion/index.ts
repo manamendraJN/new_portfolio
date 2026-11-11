@@ -1,3 +1,4 @@
+export { ContactField } from "./ContactField";
 export { CoverParallax } from "./CoverParallax";
 export { FrameSequence } from "./FrameSequence";
 export { isSlowConnection, useMotion } from "./hooks";
