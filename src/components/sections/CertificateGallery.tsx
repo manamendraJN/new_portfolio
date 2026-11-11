@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Label } from "@/components/ui";
 import type { Certificate } from "@/lib/types";
+import { CertificateImage } from "./CertificateImage";
 
 /**
  * Compact certificate list: one tight row per certificate, in two columns on wide screens.
@@ -16,18 +16,7 @@ export function CertificateGallery({ items }: { items: Certificate[] }) {
           className="flex items-center justify-between gap-4 border-t border-line py-3"
         >
           <div className="flex min-w-0 items-center gap-3">
-            {c.imageUrl && (
-              <div className="relative aspect-[4/3] w-14 shrink-0 border border-line bg-surface">
-                <Image
-                  src={c.imageUrl}
-                  alt={`${c.title} certificate from ${c.issuer}`}
-                  fill
-                  unoptimized
-                  sizes="56px"
-                  className="object-contain"
-                />
-              </div>
-            )}
+            {c.imageUrl && <CertificateImage src={c.imageUrl} title={c.title} issuer={c.issuer} />}
             <div className="min-w-0">
               <h4 className="text-[0.9375rem] leading-snug font-medium">{c.title}</h4>
               <p className="text-sm leading-snug text-muted">

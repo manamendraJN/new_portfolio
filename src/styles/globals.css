@@ -104,3 +104,10 @@ a {
     min-height: 100svh;
   }
 }
+
+/* While a modal dialog (certificate viewer) is open, the page behind does not scroll. The
+   gutter is kept so the layout does not shift when the scrollbar disappears. */
+html:has(dialog[open]) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
